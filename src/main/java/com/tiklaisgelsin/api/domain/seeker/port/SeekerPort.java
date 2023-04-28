@@ -7,5 +7,5 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerUpdate;
 public interface SeekerPort {
     Seeker createSeeker(SeekerCreate seekerCreate);
 
-    void updateSeeker(SeekerUpdate seekerUpdate);
+    Void updateSeeker(SeekerUpdate seekerUpdate);
 }

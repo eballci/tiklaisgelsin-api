@@ -8,7 +8,7 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.language.UpdateSeekerLanguage
 public interface LanguagePort {
     Language addLanguage(AddSeekerLanguage addSeekerLanguage);
 
-    void updateLanguage(UpdateSeekerLanguage updateSeekerLanguage);
+    Void updateLanguage(UpdateSeekerLanguage updateSeekerLanguage);
 
-    void removeLanguage(RemoveSeekerLanguage removeSeekerLanguage);
+    Void removeLanguage(RemoveSeekerLanguage removeSeekerLanguage);
 }

@@ -8,7 +8,7 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.phone.UpdateSeekerPhone;
 public interface PhonePort {
     Phone addPhone(AddSeekerPhone addSeekerPhone);
 
-    void updatePhone(UpdateSeekerPhone updateSeekerPhone);
+    Void updatePhone(UpdateSeekerPhone updateSeekerPhone);
 
-    void removePhone(RemoveSeekerPhone removeSeekerPhone);
+    Void removePhone(RemoveSeekerPhone removeSeekerPhone);
 }
