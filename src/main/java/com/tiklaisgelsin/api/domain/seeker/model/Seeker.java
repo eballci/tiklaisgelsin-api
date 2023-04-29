@@ -19,4 +19,5 @@ public class Seeker {
     private List<Phone> phones;
     private List<Language> languages;
     private List<Experience> experiences;
+    private List<Offer> offers;
 }
