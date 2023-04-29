@@ -11,4 +11,5 @@ public class Offer {
     private Long id;
     private Position position;
     private LocalDateTime createdAt;
+    private OfferStatus offerStatus;
 }
