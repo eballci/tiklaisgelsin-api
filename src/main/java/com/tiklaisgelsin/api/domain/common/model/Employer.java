@@ -12,6 +12,7 @@ public class Employer {
     private String avatar;
     private String name;
     private String description;
+    private String email;
     private int scale;
     private String webSite;
     private List<Position> openPositions;
