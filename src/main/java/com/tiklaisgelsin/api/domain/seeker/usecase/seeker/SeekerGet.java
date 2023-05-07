@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GetSeeker implements UseCase {
+public class SeekerGet implements UseCase {
     private Long seekerId;
 }
