@@ -11,5 +11,7 @@ import java.time.LocalDate;
 public class SeekerCreate implements UseCase {
     private String name;
     private String surname;
+    private String email;
+    private String password;
     private LocalDate birth;
 }
