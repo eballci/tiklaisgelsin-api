@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Data
 @Builder
@@ -15,4 +16,8 @@ public class Experience {
     private String description;
     private LocalDate start;
     private LocalDate end;
+
+    public long getMonthsEmployed() {
+        return ChronoUnit.MONTHS.between(start.withDayOfMonth(1), end.withDayOfMonth(1));
+    }
 }

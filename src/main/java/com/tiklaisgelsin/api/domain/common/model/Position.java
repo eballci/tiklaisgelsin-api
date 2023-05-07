@@ -3,6 +3,8 @@ package com.tiklaisgelsin.api.domain.common.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class Position {
@@ -10,4 +12,5 @@ public class Position {
     private Employer employer;
     private String title;
     private String description;
+    private List<Criteria<?>> criteriaList;
 }

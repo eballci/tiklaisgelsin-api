@@ -21,4 +21,5 @@ public class Seeker {
     private List<Experience> experiences;
     private List<Offer> offers;
     private List<Submission> submissions;
+    private List<PositionSuggestion> positionSuggestions;
 }
