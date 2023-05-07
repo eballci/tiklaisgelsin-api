@@ -1,4 +1,4 @@
-package com.tiklaisgelsin.api.domain.employer.usecase;
+package com.tiklaisgelsin.api.domain.employer.usecase.employer;
 
 import lombok.Builder;
 import lombok.Data;
