@@ -1,7 +1,8 @@
 package com.tiklaisgelsin.api.domain.common.model;
 
 public enum SubmissionStatus {
-    IDLE(1),
+    ISSUED(1),
+    IDLE(2),
     ACCEPTED(3),
     REFUSED(4);
 
@@ -13,7 +14,8 @@ public enum SubmissionStatus {
 
     public static SubmissionStatus generate(int level) {
         try {
-            if (level == 1) return IDLE;
+            if (level == 1) return ISSUED;
+            if (level == 2) return IDLE;
             if (level == 3) return ACCEPTED;
             if (level == 4) return REFUSED;
             throw new RuntimeException("The provided level is not satisfactory");
