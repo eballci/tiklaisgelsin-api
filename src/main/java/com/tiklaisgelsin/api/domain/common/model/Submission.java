@@ -1,4 +1,4 @@
-package com.tiklaisgelsin.api.domain.seeker.model;
+package com.tiklaisgelsin.api.domain.common.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Submission {
     private Long id;
+    private Long seekerId;
     private Position position;
     private SubmissionStatus submissionStatus;
     private LocalDateTime createdAt;

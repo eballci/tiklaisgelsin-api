@@ -1,4 +1,4 @@
-package com.tiklaisgelsin.api.domain.seeker.model;
+package com.tiklaisgelsin.api.domain.common.model;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.tiklaisgelsin.api.domain.seeker.handler.experience;
 
+import com.tiklaisgelsin.api.domain.common.model.Experience;
 import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
-import com.tiklaisgelsin.api.domain.seeker.model.Experience;
 import com.tiklaisgelsin.api.domain.seeker.port.ExperiencePort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.experience.AddSeekerExperience;
 import lombok.RequiredArgsConstructor;

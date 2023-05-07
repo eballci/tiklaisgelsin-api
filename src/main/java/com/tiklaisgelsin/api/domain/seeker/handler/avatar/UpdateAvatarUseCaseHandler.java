@@ -10,7 +10,6 @@ public class UpdateAvatarUseCaseHandler implements UseCaseHandler<Void, UpdateSe
 
     private final AvatarPort avatarPort;
 
-
     @Override
     public Void handle(UpdateSeekerAvatar useCase) {
         return avatarPort.updateAvatar(useCase);

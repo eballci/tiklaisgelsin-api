@@ -1,7 +1,7 @@
 package com.tiklaisgelsin.api.domain.seeker.handler.language;
 
+import com.tiklaisgelsin.api.domain.common.model.Language;
 import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
-import com.tiklaisgelsin.api.domain.seeker.model.Language;
 import com.tiklaisgelsin.api.domain.seeker.port.LanguagePort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.language.AddSeekerLanguage;
 import lombok.RequiredArgsConstructor;

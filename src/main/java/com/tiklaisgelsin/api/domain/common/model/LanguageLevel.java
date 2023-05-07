@@ -1,4 +1,4 @@
-package com.tiklaisgelsin.api.domain.seeker.model;
+package com.tiklaisgelsin.api.domain.common.model;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,10 +15,6 @@ public enum LanguageLevel {
         this.level = level;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
     public static LanguageLevel generate(int level) {
         try {
             if (level == 1) return BEGINNER;
@@ -32,5 +28,9 @@ public enum LanguageLevel {
         }
 
         return null;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

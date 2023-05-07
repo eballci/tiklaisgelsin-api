@@ -1,6 +1,6 @@
 package com.tiklaisgelsin.api.domain.seeker.port;
 
-import com.tiklaisgelsin.api.domain.seeker.model.Experience;
+import com.tiklaisgelsin.api.domain.common.model.Experience;
 import com.tiklaisgelsin.api.domain.seeker.usecase.experience.AddSeekerExperience;
 import com.tiklaisgelsin.api.domain.seeker.usecase.experience.RemoveSeekerExperience;
 import com.tiklaisgelsin.api.domain.seeker.usecase.experience.UpdateSeekerExperience;

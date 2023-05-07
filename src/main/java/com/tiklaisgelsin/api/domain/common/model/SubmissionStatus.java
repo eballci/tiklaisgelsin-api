@@ -1,4 +1,4 @@
-package com.tiklaisgelsin.api.domain.seeker.model;
+package com.tiklaisgelsin.api.domain.common.model;
 
 public enum SubmissionStatus {
     IDLE(1),
@@ -11,10 +11,6 @@ public enum SubmissionStatus {
         this.level = level;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
     public static SubmissionStatus generate(int level) {
         try {
             if (level == 1) return IDLE;
@@ -25,5 +21,9 @@ public enum SubmissionStatus {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

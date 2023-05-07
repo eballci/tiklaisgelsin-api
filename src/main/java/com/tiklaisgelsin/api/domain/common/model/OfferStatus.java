@@ -1,4 +1,4 @@
-package com.tiklaisgelsin.api.domain.seeker.model;
+package com.tiklaisgelsin.api.domain.common.model;
 
 public enum OfferStatus {
     ISSUED(1),
@@ -10,10 +10,6 @@ public enum OfferStatus {
 
     OfferStatus(int level) {
         this.level = level;
-    }
-
-    public int getLevel() {
-        return level;
     }
 
     public static OfferStatus generate(int level) {
@@ -28,5 +24,9 @@ public enum OfferStatus {
         }
 
         return null;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
