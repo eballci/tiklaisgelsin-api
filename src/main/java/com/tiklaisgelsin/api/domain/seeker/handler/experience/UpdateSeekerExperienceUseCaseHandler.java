@@ -4,7 +4,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.seeker.port.ExperiencePort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.experience.RemoveSeekerExperience;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class UpdateSeekerExperienceUseCaseHandler implements UseCaseHandler<Void, RemoveSeekerExperience> {
 

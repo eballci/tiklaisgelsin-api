@@ -11,10 +11,12 @@ import com.tiklaisgelsin.api.domain.seeker.port.SeekerPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerGet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.concurrent.Future;
 
+@Component
 @RequiredArgsConstructor
 public class SuggestSeekerUseCaseHandler implements UseCaseHandler<Future<?>, SuggestSeeker> {
 

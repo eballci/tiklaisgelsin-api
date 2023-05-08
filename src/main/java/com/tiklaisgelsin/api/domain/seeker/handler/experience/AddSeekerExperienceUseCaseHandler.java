@@ -5,7 +5,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.seeker.port.ExperiencePort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.experience.AddSeekerExperience;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class AddSeekerExperienceUseCaseHandler implements UseCaseHandler<Experience, AddSeekerExperience> {
 

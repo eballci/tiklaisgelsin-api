@@ -5,7 +5,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.seeker.port.SubmissionPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.submission.IssueSubmission;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class IssueSubmissionUseCaseHandler implements UseCaseHandler<Submission, IssueSubmission> {
 

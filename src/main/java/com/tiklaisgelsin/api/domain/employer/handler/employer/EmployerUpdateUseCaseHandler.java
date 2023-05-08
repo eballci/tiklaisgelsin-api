@@ -4,7 +4,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.EmployerPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.employer.EmployerUpdate;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class EmployerUpdateUseCaseHandler implements UseCaseHandler<Void, EmployerUpdate> {
 

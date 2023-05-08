@@ -5,7 +5,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.seeker.port.PhonePort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.phone.AddSeekerPhone;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class AddSeekerPhoneUseCaseHandler implements UseCaseHandler<Phone, AddSeekerPhone> {
 

@@ -4,7 +4,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.AvatarPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.avatar.UpdateEmployerAvatar;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class UpdateEmployerAvatarUseCaseHandler implements UseCaseHandler<Void, UpdateEmployerAvatar> {
 

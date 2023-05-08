@@ -4,7 +4,9 @@ import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.seeker.port.SeekerPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerUpdate;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class UpdateSeekerUseCaseHandler implements UseCaseHandler<Void, SeekerUpdate> {
 
