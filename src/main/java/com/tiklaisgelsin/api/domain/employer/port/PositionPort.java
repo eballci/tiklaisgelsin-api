@@ -8,6 +8,8 @@ import com.tiklaisgelsin.api.domain.employer.usecase.position.UpdatePosition;
 import java.util.List;
 
 public interface PositionPort {
+    Position getPosition(Long id);
+
     Position createPosition(CreatePosition createPosition);
 
     Void updatePosition(UpdatePosition updatePosition);
