@@ -4,10 +4,11 @@ import com.tiklaisgelsin.api.domain.common.model.Criteria;
 import com.tiklaisgelsin.api.domain.common.model.Position;
 import com.tiklaisgelsin.api.domain.common.model.Seeker;
 import com.tiklaisgelsin.api.domain.common.port.SuggestionPort;
-import com.tiklaisgelsin.api.domain.common.usecase.SuggestPosition;
+import com.tiklaisgelsin.api.domain.common.usecase.SuggestSeeker;
 import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.seeker.port.SeekerPort;
+import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerGet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 @RequiredArgsConstructor
-public class SuggestPositionUseCaseHandler implements UseCaseHandler<Future<?>, SuggestPosition> {
+public class SuggestSeekerUseCaseHandler implements UseCaseHandler<Future<?>, SuggestSeeker> {
 
     private final PositionPort positionPort;
     private final SeekerPort seekerPort;
@@ -23,11 +24,11 @@ public class SuggestPositionUseCaseHandler implements UseCaseHandler<Future<?>, 
 
     @Async
     @Override
-    public Future<?> handle(SuggestPosition useCase) {
-        Position position = positionPort.getPosition(useCase.getPositionId());
-        List<Seeker> seekers = seekerPort.getAllSeekers();
+    public Future<?> handle(SuggestSeeker useCase) {
+        List<Position> positions = positionPort.getAllPositions();
+        Seeker seeker = seekerPort.getSeeker(SeekerGet.builder().seekerId(useCase.getSeekerId()).build());
 
-        for (Seeker seeker : seekers) {
+        for (Position position : positions) {
             int sum = 0;
 
             for (Criteria criteria : position.getCriteriaList()) {
