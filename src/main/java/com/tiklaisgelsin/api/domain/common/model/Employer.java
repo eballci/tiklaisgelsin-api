@@ -18,5 +18,6 @@ public class Employer {
     private String webSite;
     private List<Position> openPositions;
     private List<Submission> submissions;
+    private List<Offer> offers;
     private SortedSet<SeekerSuggestion> seekerSuggestions;
 }
