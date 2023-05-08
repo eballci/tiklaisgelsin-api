@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -17,5 +18,5 @@ public class Employer {
     private String webSite;
     private List<Position> openPositions;
     private List<Submission> submissions;
-    private List<SeekerSuggestion> seekerSuggestions;
+    private Set<SeekerSuggestion> seekerSuggestions;
 }
