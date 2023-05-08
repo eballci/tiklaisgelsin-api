@@ -5,10 +5,14 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerGet;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerCreate;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerUpdate;
 
+import java.util.List;
+
 public interface SeekerPort {
     Seeker getSeeker(SeekerGet getSeeker);
 
     Seeker createSeeker(SeekerCreate seekerCreate);
 
     Void updateSeeker(SeekerUpdate seekerUpdate);
+
+    List<Seeker> getAllSeekers();
 }
