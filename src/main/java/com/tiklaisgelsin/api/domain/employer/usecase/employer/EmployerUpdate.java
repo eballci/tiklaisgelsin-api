@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class EmployerUpdate {
+public class EmployerUpdate implements UseCase {
     private Long employerId;
     private String name;
     private String description;

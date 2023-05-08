@@ -1,11 +1,12 @@
 package com.tiklaisgelsin.api.domain.employer.usecase.avatar;
 
+import com.tiklaisgelsin.api.domain.common.model.UseCase;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class UpdateEmployerAvatar {
+public class UpdateEmployerAvatar implements UseCase {
     private Long employerId;
     private String avatar;
 }
