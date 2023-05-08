@@ -2,11 +2,9 @@ package com.tiklaisgelsin.api.domain.common.port;
 
 import com.tiklaisgelsin.api.domain.common.model.PositionSuggestion;
 import com.tiklaisgelsin.api.domain.common.model.SeekerSuggestion;
-import com.tiklaisgelsin.api.domain.common.usecase.SuggestPosition;
-import com.tiklaisgelsin.api.domain.common.usecase.SuggestSeeker;
 
 public interface SuggestionPort {
-    PositionSuggestion createPositionSuggestion(SuggestPosition suggestPosition);
+    PositionSuggestion createPositionSuggestion(Long positionId, Long seekerId);
 
-    SeekerSuggestion createPositionSuggestion(SuggestSeeker suggestSeeker);
+    SeekerSuggestion createSeekerSuggestion(Long seekerId, Long positionId);
 }
