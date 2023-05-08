@@ -7,13 +7,13 @@ import java.util.List;
 
 @Data
 @Builder
-public class LanguageCriteria implements Criteria<List<Language>> {
+public class LanguageCriteria implements Criteria {
 
     private Language expectedLanguage;
 
     @Override
-    public int getPoint(List<Language> data) {
-        for (Language iter : data) {
+    public int getPoint(Seeker seeker) {
+        for (Language iter : seeker.getLanguages()) {
             if (iter.getName().compareTo(expectedLanguage.getName()) == 0) {
                 return (iter.getLevel().getLevel() / expectedLanguage.getLevel().getLevel() * 100) % 101;
             }

@@ -7,15 +7,15 @@ import java.util.List;
 
 @Data
 @Builder
-public class ExperienceCriteria implements Criteria<List<Experience>> {
+public class ExperienceCriteria implements Criteria {
     private int minimumYears;
     private List<String> titles;
 
     @Override
-    public int getPoint(List<Experience> data) {
+    public int getPoint(Seeker seeker) {
         long employedMonths = 0;
 
-        for (Experience iter : data) {
+        for (Experience iter : seeker.getExperiences()) {
             for (String title : titles) {
                 if (iter.getPosition().toLowerCase().compareTo(title.toLowerCase()) == 0) {
                     employedMonths += iter.getMonthsEmployed();
