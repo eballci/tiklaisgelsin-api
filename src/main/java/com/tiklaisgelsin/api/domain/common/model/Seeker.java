@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
 
 @Data
 @Builder
@@ -22,5 +22,5 @@ public class Seeker {
     private List<Experience> experiences;
     private List<Offer> offers;
     private List<Submission> submissions;
-    private Set<PositionSuggestion> positionSuggestions;
+    private SortedSet<PositionSuggestion> positionSuggestions;
 }

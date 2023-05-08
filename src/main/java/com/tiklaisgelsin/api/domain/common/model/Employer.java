@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
 
 @Data
 @Builder
@@ -18,5 +18,5 @@ public class Employer {
     private String webSite;
     private List<Position> openPositions;
     private List<Submission> submissions;
-    private Set<SeekerSuggestion> seekerSuggestions;
+    private SortedSet<SeekerSuggestion> seekerSuggestions;
 }
