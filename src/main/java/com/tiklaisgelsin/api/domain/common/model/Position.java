@@ -12,5 +12,5 @@ public class Position {
     private Employer employer;
     private String title;
     private String description;
-    private List<Criteria<?>> criteriaList;
+    private List<Criteria> criteriaList;
 }

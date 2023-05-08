@@ -13,5 +13,5 @@ public class UpdatePosition implements UseCase {
     private Long positionId;
     private String title;
     private String description;
-    private List<Criteria<?>> criteriaList;
+    private List<Criteria> criteriaList;
 }

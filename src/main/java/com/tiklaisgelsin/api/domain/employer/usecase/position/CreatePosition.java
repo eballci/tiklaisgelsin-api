@@ -13,5 +13,5 @@ public class CreatePosition implements UseCase {
     private Long employerId;
     private String title;
     private String description;
-    private List<Criteria<?>> criteriaList;
+    private List<Criteria> criteriaList;
 }
