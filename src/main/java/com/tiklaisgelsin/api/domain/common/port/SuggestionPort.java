@@ -9,5 +9,5 @@ public interface SuggestionPort {
 
     SeekerSuggestion createSeekerSuggestion(Long seekerId, Long positionId);
 
-    Void clearAllSeekerSuggestions(ClearSeekerSuggestionsForPosition useCase);
+    void clearAllSeekerSuggestions(ClearSeekerSuggestionsForPosition useCase);
 }

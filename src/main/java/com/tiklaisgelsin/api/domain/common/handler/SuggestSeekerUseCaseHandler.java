@@ -5,7 +5,7 @@ import com.tiklaisgelsin.api.domain.common.model.Position;
 import com.tiklaisgelsin.api.domain.common.model.Seeker;
 import com.tiklaisgelsin.api.domain.common.port.SuggestionPort;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestSeeker;
-import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
+import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.seeker.port.SeekerPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerGet;
@@ -14,11 +14,10 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.concurrent.Future;
 
 @Component
 @RequiredArgsConstructor
-public class SuggestSeekerUseCaseHandler implements UseCaseHandler<Future<?>, SuggestSeeker> {
+public class SuggestSeekerUseCaseHandler implements VoidUseCaseHandler<SuggestSeeker> {
 
     private final PositionPort positionPort;
     private final SeekerPort seekerPort;
@@ -26,7 +25,7 @@ public class SuggestSeekerUseCaseHandler implements UseCaseHandler<Future<?>, Su
 
     @Async
     @Override
-    public Future<?> handle(SuggestSeeker useCase) {
+    public void handle(SuggestSeeker useCase) {
         List<Position> positions = positionPort.getAllPositions();
         Seeker seeker = seekerPort.getSeeker(SeekerGet.builder().seekerId(useCase.getSeekerId()).build());
 
@@ -42,7 +41,5 @@ public class SuggestSeekerUseCaseHandler implements UseCaseHandler<Future<?>, Su
                 suggestionPort.createSeekerSuggestion(seeker.getId(), position.getId());
             }
         }
-
-        return null;
     }
 }
