@@ -8,7 +8,7 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.experience.UpdateSeekerExperi
 public interface ExperiencePort {
     Experience addExperience(AddSeekerExperience addSeekerExperience);
 
-    Void updateExperience(UpdateSeekerExperience updateSeekerExperience);
+    void updateExperience(UpdateSeekerExperience updateSeekerExperience);
 
-    Void removeExperience(RemoveSeekerExperience removeSeekerExperience);
+    void removeExperience(RemoveSeekerExperience removeSeekerExperience);
 }

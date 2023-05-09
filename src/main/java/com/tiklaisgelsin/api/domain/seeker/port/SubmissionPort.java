@@ -7,5 +7,5 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.submission.RemoveSubmission;
 public interface SubmissionPort {
     Submission issueSubmission(IssueSubmission issueSubmission);
 
-    Void removeSubmission(RemoveSubmission removeSubmission);
+    void removeSubmission(RemoveSubmission removeSubmission);
 }

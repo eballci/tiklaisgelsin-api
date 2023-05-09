@@ -8,7 +8,7 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.education.UpdateSeekerEducati
 public interface EducationPort {
     Education createEducation(AddSeekerEducation useCase);
 
-    Void updateEducation(UpdateSeekerEducation useCase);
+    void updateEducation(UpdateSeekerEducation useCase);
 
-    Void removeEducation(RemoveSeekerEducation useCase);
+    void removeEducation(RemoveSeekerEducation useCase);
 }

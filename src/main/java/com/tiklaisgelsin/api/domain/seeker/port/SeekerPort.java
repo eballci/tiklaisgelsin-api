@@ -1,8 +1,8 @@
 package com.tiklaisgelsin.api.domain.seeker.port;
 
 import com.tiklaisgelsin.api.domain.common.model.Seeker;
-import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerGet;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerCreate;
+import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerGet;
 import com.tiklaisgelsin.api.domain.seeker.usecase.seeker.SeekerUpdate;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface SeekerPort {
 
     Seeker createSeeker(SeekerCreate seekerCreate);
 
-    Void updateSeeker(SeekerUpdate seekerUpdate);
+    void updateSeeker(SeekerUpdate seekerUpdate);
 
     List<Seeker> getAllSeekers();
 }

@@ -5,7 +5,6 @@ import com.tiklaisgelsin.api.domain.common.model.Position;
 import com.tiklaisgelsin.api.domain.common.model.Seeker;
 import com.tiklaisgelsin.api.domain.common.port.SuggestionPort;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestPosition;
-import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.seeker.port.SeekerPort;
@@ -14,7 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.concurrent.Future;
 
 @Component
 @RequiredArgsConstructor
