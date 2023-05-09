@@ -20,6 +20,7 @@ public class Seeker {
     private List<Phone> phones;
     private List<Language> languages;
     private List<Experience> experiences;
+    private List<Education> educations;
     private List<Offer> offers;
     private List<Submission> submissions;
     private SortedSet<PositionSuggestion> positionSuggestions;
