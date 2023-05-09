@@ -3,19 +3,19 @@ package com.tiklaisgelsin.api.domain.common.model;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
 public class LanguageCriteria implements Criteria {
 
-    private Language expectedLanguage;
+    private String expectedLanguage;
+
+    private LanguageLevel expectedLevel;
 
     @Override
     public int getPoint(Seeker seeker) {
         for (Language iter : seeker.getLanguages()) {
-            if (iter.getName().compareTo(expectedLanguage.getName()) == 0) {
-                return (iter.getLevel().getLevel() / expectedLanguage.getLevel().getLevel() * 100) % 101;
+            if (iter.getName().compareTo(expectedLanguage) == 0) {
+                return (iter.getLevel().getLevel() / expectedLevel.getLevel() * 100) % 101;
             }
         }
 
