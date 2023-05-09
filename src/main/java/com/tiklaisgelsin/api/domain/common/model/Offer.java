@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Offer {
     private Long id;
+    private Long seekerId;
     private Position position;
     private LocalDateTime createdAt;
     private OfferStatus offerStatus;
