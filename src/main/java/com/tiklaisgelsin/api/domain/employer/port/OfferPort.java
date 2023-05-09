@@ -7,5 +7,5 @@ import com.tiklaisgelsin.api.domain.employer.usecase.offer.RemoveOffer;
 public interface OfferPort {
     Offer issue(IssueOffer useCase);
 
-    Void remove(RemoveOffer useCase);
+    void remove(RemoveOffer useCase);
 }

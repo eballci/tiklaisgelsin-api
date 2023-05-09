@@ -10,5 +10,5 @@ public interface EmployerPort {
 
     Employer createEmployer(EmployerCreate employerCreate);
 
-    Void updateEmployer(EmployerUpdate employerUpdate);
+    void updateEmployer(EmployerUpdate employerUpdate);
 }

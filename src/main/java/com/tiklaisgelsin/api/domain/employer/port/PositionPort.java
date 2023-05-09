@@ -12,9 +12,9 @@ public interface PositionPort {
 
     Position createPosition(CreatePosition createPosition);
 
-    Void updatePosition(UpdatePosition updatePosition);
+    void updatePosition(UpdatePosition updatePosition);
 
-    Void removePosition(DeletePosition deletePosition);
+    void removePosition(DeletePosition deletePosition);
 
     List<Position> getAllPositions();
 }
