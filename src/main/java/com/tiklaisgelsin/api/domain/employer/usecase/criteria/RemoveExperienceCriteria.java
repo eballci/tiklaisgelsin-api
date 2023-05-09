@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AddLanguageCriteria implements UseCase {
-    private Long positionId;
-    private String language;
-    private int minimumLevel;
+public class RemoveExperienceCriteria implements UseCase {
+    private Long experienceCriteriaId;
 }

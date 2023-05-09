@@ -4,10 +4,12 @@ import com.tiklaisgelsin.api.domain.common.model.UseCase;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @Builder
-public class AddLanguageCriteria implements UseCase {
-    private Long positionId;
-    private String language;
-    private int minimumLevel;
+public class UpdateExperienceCriteria implements UseCase {
+    private Long experienceCriteriaId;
+    private int minimumYears;
+    private Set<String> titles;
 }
