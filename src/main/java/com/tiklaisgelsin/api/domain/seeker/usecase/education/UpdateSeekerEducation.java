@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class UpdateSeekerEducation implements UseCase {
-    private Long seekerId;
+    private Long educationId;
     private String study;
     private String institution;
     private String description;
