@@ -39,6 +39,6 @@ public class SuggestionDataAdapter implements SuggestionPort {
 
     @Override
     public void clearAllSeekerSuggestions(ClearSeekerSuggestionsForPosition useCase) {
-        suggestionJpaRepository.deleteByPositionId(useCase.getPositionId());
+        suggestionJpaRepository.deleteAllByPositionId(useCase.getPositionId());
     }
 }
