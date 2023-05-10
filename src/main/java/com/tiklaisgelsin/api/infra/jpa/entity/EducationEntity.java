@@ -1,5 +1,7 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Education;
+import com.tiklaisgelsin.api.domain.common.model.EducationLevel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,4 +35,20 @@ public class EducationEntity extends AbstractEntity {
 
     @Column
     private LocalDate end;
+
+    @Column
+    private int level;
+
+    public Education toModel() {
+        return Education.builder()
+                .id(getId())
+                .study(study)
+                .institution(institution)
+                .description(description)
+                .GPA(GPA)
+                .start(start)
+                .end(end)
+                .educationLevel(EducationLevel.generate(level))
+                .build();
+    }
 }

@@ -1,11 +1,14 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Criteria;
+import com.tiklaisgelsin.api.domain.common.model.Position;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -40,4 +43,27 @@ public class PositionEntity extends AbstractEntity {
 
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     private List<SuggestionEntity> suggestions = new LinkedList<>();
+
+    public Position toModel() {
+
+        List<Criteria> criteriaList = new LinkedList<>(
+                languageCriterias.stream().map(LanguageCriteriaEntity::toModel).toList()
+        );
+
+        if (experienceCriteria != null) {
+            criteriaList.add(experienceCriteria.toModel());
+        }
+
+        if (educationCriteria != null) {
+            criteriaList.add(educationCriteria.toModel());
+        }
+
+        return Position.builder()
+                .id(getId())
+                .title(title)
+                .description(description)
+                .criteriaList(criteriaList)
+                .employer(employer.toModel())
+                .build();
+    }
 }

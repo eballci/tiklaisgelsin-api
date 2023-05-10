@@ -1,5 +1,7 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Submission;
+import com.tiklaisgelsin.api.domain.common.model.SubmissionStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +26,14 @@ public class SubmissionEntity extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "seeker_id")
     private SeekerEntity seeker;
+
+    public Submission toModel() {
+        return Submission.builder()
+                .id(getId())
+                .seekerId(seeker.getId())
+                .position(position.toModel())
+                .submissionStatus(SubmissionStatus.generate(status))
+                .createdAt(getCreatedAt())
+                .build();
+    }
 }

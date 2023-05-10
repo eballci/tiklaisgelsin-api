@@ -1,5 +1,7 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Offer;
+import com.tiklaisgelsin.api.domain.common.model.OfferStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +26,13 @@ public class OfferEntity extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "seeker_id")
     private SeekerEntity seeker;
+
+    public Offer toModel() {
+        return Offer.builder()
+                .id(getId())
+                .seekerId(seeker.getId())
+                .position(position.toModel())
+                .offerStatus(OfferStatus.generate(status))
+                .build();
+    }
 }

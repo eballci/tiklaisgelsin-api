@@ -1,5 +1,6 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Experience;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,4 +34,16 @@ public class ExperienceEntity extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "seeker_id")
     private SeekerEntity seeker;
+
+    public Experience toModel() {
+        return Experience.builder()
+                .id(getId())
+                .company(company)
+                .department(department)
+                .position(position)
+                .description(description)
+                .start(start)
+                .end(end)
+                .build();
+    }
 }

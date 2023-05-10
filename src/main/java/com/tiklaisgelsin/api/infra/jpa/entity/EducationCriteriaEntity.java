@@ -1,6 +1,7 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
 import com.tiklaisgelsin.api.domain.common.model.EducationCriteria;
+import com.tiklaisgelsin.api.domain.common.model.EducationLevel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,4 +21,11 @@ public class EducationCriteriaEntity extends AbstractEntity {
     @OneToOne
     @JoinColumn(name = "position_id")
     private PositionEntity position;
+
+    public EducationCriteria toModel() {
+        return EducationCriteria.builder()
+                .study(study)
+                .minEducationLevel(EducationLevel.generate(expectedLevel))
+                .build();
+    }
 }

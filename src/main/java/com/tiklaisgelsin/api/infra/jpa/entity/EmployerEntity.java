@@ -1,11 +1,14 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Employer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -45,4 +48,24 @@ public class EmployerEntity extends AbstractEntity {
 
     @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL)
     private List<SuggestionEntity> suggestions = new LinkedList<>();
+
+    public Employer toModel() {
+        return Employer.builder()
+                .id(getId())
+                .name(name)
+                .avatar(avatar.getFile())
+                .description(description)
+                .webSite(webSite)
+                .email(email)
+                .scale(scale)
+                .openPositions(positions.stream().map(PositionEntity::toModel).toList())
+                .offers(offers.stream().map(OfferEntity::toModel).toList())
+                .submissions(submissions.stream().map(SubmissionEntity::toModel).toList())
+                .seekerSuggestions(
+                        suggestions.stream()
+                                .map(SuggestionEntity::toSeekerSuggestionModel)
+                                .collect(Collectors.toCollection(TreeSet::new))
+                )
+                .build();
+    }
 }

@@ -1,5 +1,6 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.Phone;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,4 +20,12 @@ public class PhoneEntity extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "seeker_id")
     private SeekerEntity seeker;
+
+    public Phone toModel() {
+        return Phone.builder()
+                .id(getId())
+                .prefix(prefix)
+                .number(number)
+                .build();
+    }
 }
