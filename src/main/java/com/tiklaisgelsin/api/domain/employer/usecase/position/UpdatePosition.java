@@ -1,7 +1,6 @@
 package com.tiklaisgelsin.api.domain.employer.usecase.position;
 
-import com.tiklaisgelsin.api.domain.common.model.Criteria;
-import com.tiklaisgelsin.api.domain.common.model.UseCase;
+import com.tiklaisgelsin.api.domain.common.model.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,5 +12,7 @@ public class UpdatePosition implements UseCase {
     private Long positionId;
     private String title;
     private String description;
-    private List<Criteria> criteriaList;
+    private EducationCriteria educationCriteria;
+    private ExperienceCriteria experienceCriteria;
+    private List<LanguageCriteria> languageCriteriaList;
 }
