@@ -11,9 +11,6 @@ import lombok.Setter;
 public class LanguageCriteriaEntity extends AbstractEntity {
 
     @Column(nullable = false)
-    private Long positionId;
-
-    @Column(nullable = false)
     private String language;
 
     @Column(nullable = false)

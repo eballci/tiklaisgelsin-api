@@ -1,5 +1,6 @@
 package com.tiklaisgelsin.api.infra.jpa.entity;
 
+import com.tiklaisgelsin.api.domain.common.model.EducationCriteria;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,9 +10,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "language_criteria")
 public class EducationCriteriaEntity extends AbstractEntity {
-
-    @Column(nullable = false)
-    private Long positionId;
 
     @Column(nullable = false)
     private String study;
