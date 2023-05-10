@@ -11,9 +11,6 @@ import lombok.Setter;
 public class ExperienceCriteriaEntity extends AbstractEntity {
 
     @Column(nullable = false)
-    private Long positionId;
-
-    @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
