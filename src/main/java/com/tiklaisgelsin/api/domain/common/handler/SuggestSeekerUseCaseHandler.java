@@ -4,6 +4,7 @@ import com.tiklaisgelsin.api.domain.common.model.Criteria;
 import com.tiklaisgelsin.api.domain.common.model.Position;
 import com.tiklaisgelsin.api.domain.common.model.Seeker;
 import com.tiklaisgelsin.api.domain.common.port.SuggestionPort;
+import com.tiklaisgelsin.api.domain.common.usecase.CreateSuggestion;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestSeeker;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
@@ -37,8 +38,13 @@ public class SuggestSeekerUseCaseHandler implements VoidUseCaseHandler<SuggestSe
             }
 
             if (sum / position.getCriteriaList().size() >= 50) {
-                suggestionPort.createPositionSuggestion(position.getId(), seeker.getId());
-                suggestionPort.createSeekerSuggestion(seeker.getId(), position.getId());
+                suggestionPort.createSuggestion(
+                        CreateSuggestion.builder()
+                                .positionId(position.getId())
+                                .seekerId(seeker.getId())
+                                .matchRate(sum / position.getCriteriaList().size())
+                                .build()
+                );
             }
         }
     }
