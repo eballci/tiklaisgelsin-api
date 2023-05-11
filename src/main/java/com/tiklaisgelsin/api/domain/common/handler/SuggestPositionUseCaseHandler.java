@@ -6,7 +6,6 @@ import com.tiklaisgelsin.api.domain.common.model.Seeker;
 import com.tiklaisgelsin.api.domain.common.port.CommonSuggestionPort;
 import com.tiklaisgelsin.api.domain.common.usecase.CreateSuggestion;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestPosition;
-import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.seeker.port.SeekerPort;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +16,13 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class SuggestPositionUseCaseHandler implements VoidUseCaseHandler<SuggestPosition> {
+public class SuggestPositionUseCaseHandler {
 
     private final PositionPort positionPort;
     private final SeekerPort seekerPort;
     private final CommonSuggestionPort commonSuggestionPort;
 
     @Async
-    @Override
     public void handle(SuggestPosition useCase) {
         Position position = positionPort.getPosition(useCase.getPositionId());
         List<Seeker> seekers = seekerPort.getAllSeekers();

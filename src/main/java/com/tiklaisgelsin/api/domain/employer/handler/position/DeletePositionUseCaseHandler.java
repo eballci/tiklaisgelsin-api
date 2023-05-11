@@ -1,5 +1,6 @@
 package com.tiklaisgelsin.api.domain.employer.handler.position;
 
+import com.tiklaisgelsin.api.domain.common.handler.ClearSeekerSuggestionsForPositionUseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.usecase.ClearSeekerSuggestionsForPosition;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class DeletePositionUseCaseHandler implements VoidUseCaseHandler<DeletePosition> {
 
     private final PositionPort positionPort;
-    private final VoidUseCaseHandler<ClearSeekerSuggestionsForPosition> handler;
+    private final ClearSeekerSuggestionsForPositionUseCaseHandler handler;
 
     @Override
     public void handle(DeletePosition useCase) {

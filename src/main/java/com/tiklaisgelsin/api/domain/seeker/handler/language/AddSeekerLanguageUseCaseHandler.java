@@ -1,9 +1,9 @@
 package com.tiklaisgelsin.api.domain.seeker.handler.language;
 
+import com.tiklaisgelsin.api.domain.common.handler.SuggestSeekerUseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.model.Language;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestSeeker;
 import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
-import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.seeker.port.LanguagePort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.language.AddSeekerLanguage;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class AddSeekerLanguageUseCaseHandler implements UseCaseHandler<Language, AddSeekerLanguage> {
 
     private final LanguagePort languagePort;
-    private final VoidUseCaseHandler<SuggestSeeker> handler;
+    private final SuggestSeekerUseCaseHandler handler;
 
     @Override
     public Language handle(AddSeekerLanguage useCase) {
