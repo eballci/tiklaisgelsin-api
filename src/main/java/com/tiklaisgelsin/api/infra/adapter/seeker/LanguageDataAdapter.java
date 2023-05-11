@@ -31,7 +31,7 @@ public class LanguageDataAdapter implements LanguagePort {
         language.setLanguage(addSeekerLanguage.getName());
         language.setLevel(addSeekerLanguage.getLevel());
         language.setSeeker(seeker.get());
-        languageJpaRepository.save(language);
+        return languageJpaRepository.save(language).toModel();
     }
 
     @Override
