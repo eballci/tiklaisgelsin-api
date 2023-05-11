@@ -1,10 +1,10 @@
 package com.tiklaisgelsin.api.domain.employer.handler.position;
 
+import com.tiklaisgelsin.api.domain.common.exception.MissingEntityException;
 import com.tiklaisgelsin.api.domain.common.handler.ClearSeekerSuggestionsForPositionUseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.handler.SuggestPositionUseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.usecase.ClearSeekerSuggestionsForPosition;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestPosition;
-import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.UpdatePosition;
@@ -21,6 +21,9 @@ public class UpdatePositionUseCaseHandler implements VoidUseCaseHandler<UpdatePo
 
     @Override
     public void handle(UpdatePosition useCase) {
+        if (!positionPort.checkIfPositionExists(useCase.getPositionId())) {
+            throw new MissingEntityException("Cannot update position. The specified position does not exist.");
+        }
         clearHandler.handle(ClearSeekerSuggestionsForPosition
                 .builder()
                 .positionId(useCase.getPositionId())

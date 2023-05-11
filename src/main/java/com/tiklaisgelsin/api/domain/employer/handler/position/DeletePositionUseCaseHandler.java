@@ -1,5 +1,6 @@
 package com.tiklaisgelsin.api.domain.employer.handler.position;
 
+import com.tiklaisgelsin.api.domain.common.exception.MissingEntityException;
 import com.tiklaisgelsin.api.domain.common.handler.ClearSeekerSuggestionsForPositionUseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.usecase.ClearSeekerSuggestionsForPosition;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
@@ -17,6 +18,9 @@ public class DeletePositionUseCaseHandler implements VoidUseCaseHandler<DeletePo
 
     @Override
     public void handle(DeletePosition useCase) {
+        if (!positionPort.checkIfPositionExists(useCase.getPositionId())) {
+            throw new MissingEntityException("Cannot delete position. The specified position does not exist.");
+        }
         handler.handle(ClearSeekerSuggestionsForPosition
                 .builder()
                 .positionId(useCase.getPositionId())

@@ -17,4 +17,6 @@ public interface PositionPort {
     void removePosition(DeletePosition deletePosition);
 
     List<Position> getAllPositions();
+
+    boolean checkIfPositionExists(Long id);
 }
