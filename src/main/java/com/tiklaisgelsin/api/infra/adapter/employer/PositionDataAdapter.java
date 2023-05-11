@@ -5,14 +5,8 @@ import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.CreatePosition;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.DeletePosition;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.UpdatePosition;
-import com.tiklaisgelsin.api.infra.jpa.entity.EducationCriteriaEntity;
-import com.tiklaisgelsin.api.infra.jpa.entity.ExperienceCriteriaEntity;
-import com.tiklaisgelsin.api.infra.jpa.entity.LanguageCriteriaEntity;
-import com.tiklaisgelsin.api.infra.jpa.entity.PositionEntity;
-import com.tiklaisgelsin.api.infra.jpa.repository.EducationCriteriaJpaRepository;
-import com.tiklaisgelsin.api.infra.jpa.repository.ExperienceCriteriaJpaRepository;
-import com.tiklaisgelsin.api.infra.jpa.repository.LanguageCriteriaJpaRepository;
-import com.tiklaisgelsin.api.infra.jpa.repository.PositionJpaRepository;
+import com.tiklaisgelsin.api.infra.jpa.entity.*;
+import com.tiklaisgelsin.api.infra.jpa.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PositionDataAdapter implements PositionPort {
 
+    private final EmployerJpaRepository employerJpaRepository;
     private final PositionJpaRepository positionJpaRepository;
     private final LanguageCriteriaJpaRepository languageCriteriaJpaRepository;
     private final EducationCriteriaJpaRepository educationCriteriaJpaRepository;
@@ -37,10 +32,15 @@ public class PositionDataAdapter implements PositionPort {
 
     @Override
     public Position createPosition(CreatePosition createPosition) {
+        Optional<EmployerEntity> employer = employerJpaRepository.findById(createPosition.getEmployerId());
+
+        if (employer.isEmpty()) return null;
+
         PositionEntity position = new PositionEntity();
 
         position.setTitle(createPosition.getTitle());
         position.setDescription(createPosition.getDescription());
+        position.setEmployer(employer.get());
 
         if (createPosition.getEducationCriteria() != null) {
             EducationCriteriaEntity educationCriteria = new EducationCriteriaEntity();
