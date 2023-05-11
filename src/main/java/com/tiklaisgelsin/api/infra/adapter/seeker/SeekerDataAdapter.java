@@ -58,4 +58,9 @@ public class SeekerDataAdapter implements SeekerPort {
                 .map(SeekerEntity::toModel)
                 .toList();
     }
+
+    @Override
+    public boolean checkIfSeekerAlreadyExists(String email) {
+        return repository.findByEmail(email).isPresent();
+    }
 }

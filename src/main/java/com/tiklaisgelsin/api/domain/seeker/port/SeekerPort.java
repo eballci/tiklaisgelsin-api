@@ -15,4 +15,6 @@ public interface SeekerPort {
     void updateSeeker(SeekerUpdate seekerUpdate);
 
     List<Seeker> getAllSeekers();
+
+    boolean checkIfSeekerAlreadyExists(String email);
 }
