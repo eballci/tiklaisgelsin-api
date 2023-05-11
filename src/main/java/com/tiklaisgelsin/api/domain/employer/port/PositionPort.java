@@ -18,5 +18,5 @@ public interface PositionPort {
 
     List<Position> getAllPositions();
 
-    boolean checkIfPositionExists(Long id);
+    boolean checkIfPositionDoesntExist(Long id);
 }

@@ -126,7 +126,7 @@ public class PositionDataAdapter implements PositionPort {
     }
 
     @Override
-    public boolean checkIfPositionExists(Long id) {
-        return positionJpaRepository.findById(id).isPresent();
+    public boolean checkIfPositionDoesntExist(Long id) {
+        return positionJpaRepository.findById(id).isEmpty();
     }
 }

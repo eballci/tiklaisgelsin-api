@@ -21,7 +21,7 @@ public class UpdatePositionUseCaseHandler implements VoidUseCaseHandler<UpdatePo
 
     @Override
     public void handle(UpdatePosition useCase) {
-        if (!positionPort.checkIfPositionExists(useCase.getPositionId())) {
+        if (positionPort.checkIfPositionDoesntExist(useCase.getPositionId())) {
             throw new MissingEntityException("Cannot update position. The specified position does not exist.");
         }
         clearHandler.handle(ClearSeekerSuggestionsForPosition

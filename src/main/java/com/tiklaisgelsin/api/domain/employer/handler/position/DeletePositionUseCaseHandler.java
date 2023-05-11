@@ -18,7 +18,7 @@ public class DeletePositionUseCaseHandler implements VoidUseCaseHandler<DeletePo
 
     @Override
     public void handle(DeletePosition useCase) {
-        if (!positionPort.checkIfPositionExists(useCase.getPositionId())) {
+        if (positionPort.checkIfPositionDoesntExist(useCase.getPositionId())) {
             throw new MissingEntityException("Cannot delete position. The specified position does not exist.");
         }
         handler.handle(ClearSeekerSuggestionsForPosition
