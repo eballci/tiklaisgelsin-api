@@ -1,7 +1,6 @@
 package com.tiklaisgelsin.api.infra.rest.common;
 
 import com.tiklaisgelsin.api.domain.common.exception.DuplicateEntityException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,10 +12,7 @@ public class DomainExceptionHandler {
 
     @ExceptionHandler(DuplicateEntityException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleDuplicateEntityException(
-            DuplicateEntityException ex,
-            HttpServletRequest request
-    ) {
+    public ErrorResponse handleDuplicateEntityException(DuplicateEntityException ex) {
         return ErrorResponse.create(ex, HttpStatus.CONFLICT, ex.getMessage());
     }
 
