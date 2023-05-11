@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -53,7 +54,7 @@ public class EmployerEntity extends AbstractEntity {
         return Employer.builder()
                 .id(getId())
                 .name(name)
-                .avatar(avatar.getFile())
+                .avatar(Optional.ofNullable(avatar).map(EmployerAvatarEntity::getFile).orElse(""))
                 .description(description)
                 .webSite(webSite)
                 .email(email)

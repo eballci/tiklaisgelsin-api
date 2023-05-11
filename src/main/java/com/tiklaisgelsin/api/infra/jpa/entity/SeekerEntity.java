@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -62,7 +63,7 @@ public class SeekerEntity extends AbstractEntity {
     public Seeker toModel() {
         return Seeker.builder()
                 .id(getId())
-                .avatar(avatar.getFile())
+                .avatar(Optional.ofNullable(avatar).map(SeekerAvatarEntity::getFile).orElse(""))
                 .name(name)
                 .surname(surname)
                 .email(email)
