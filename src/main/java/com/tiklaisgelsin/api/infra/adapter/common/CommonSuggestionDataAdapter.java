@@ -1,6 +1,6 @@
 package com.tiklaisgelsin.api.infra.adapter.common;
 
-import com.tiklaisgelsin.api.domain.common.port.SuggestionPort;
+import com.tiklaisgelsin.api.domain.common.port.CommonSuggestionPort;
 import com.tiklaisgelsin.api.domain.common.usecase.ClearSeekerSuggestionsForPosition;
 import com.tiklaisgelsin.api.domain.common.usecase.CreateSuggestion;
 import com.tiklaisgelsin.api.infra.jpa.entity.PositionEntity;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class SuggestionDataAdapter implements SuggestionPort {
+public class CommonSuggestionDataAdapter implements CommonSuggestionPort {
 
     private final SeekerJpaRepository seekerJpaRepository;
     private final PositionJpaRepository positionJpaRepository;

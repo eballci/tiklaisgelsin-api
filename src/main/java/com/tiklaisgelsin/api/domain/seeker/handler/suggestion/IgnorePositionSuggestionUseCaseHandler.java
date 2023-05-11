@@ -1,7 +1,7 @@
 package com.tiklaisgelsin.api.domain.seeker.handler.suggestion;
 
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
-import com.tiklaisgelsin.api.domain.seeker.port.SuggestionPort;
+import com.tiklaisgelsin.api.domain.seeker.port.SeekerSuggestionPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.suggestion.IgnorePositionSuggestion;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class IgnorePositionSuggestionUseCaseHandler implements VoidUseCaseHandler<IgnorePositionSuggestion> {
 
-    private final SuggestionPort suggestionPort;
+    private final SeekerSuggestionPort seekerSuggestionPort;
 
     @Override
     public void handle(IgnorePositionSuggestion useCase) {
-        suggestionPort.ignorePositionSuggestion(useCase);
+        seekerSuggestionPort.ignorePositionSuggestion(useCase);
     }
 }

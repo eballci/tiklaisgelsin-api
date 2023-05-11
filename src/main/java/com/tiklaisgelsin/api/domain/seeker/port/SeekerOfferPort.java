@@ -4,7 +4,7 @@ import com.tiklaisgelsin.api.domain.seeker.usecase.offer.AcceptOffer;
 import com.tiklaisgelsin.api.domain.seeker.usecase.offer.ReadAllOffers;
 import com.tiklaisgelsin.api.domain.seeker.usecase.offer.RefuseOffer;
 
-public interface OfferPort {
+public interface SeekerOfferPort {
     void acceptOffer(AcceptOffer acceptOffer);
 
     void readAllOffers(ReadAllOffers readAllOffers);

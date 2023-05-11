@@ -2,7 +2,7 @@ package com.tiklaisgelsin.api.infra.adapter.seeker;
 
 import com.tiklaisgelsin.api.domain.common.model.Submission;
 import com.tiklaisgelsin.api.domain.common.model.SubmissionStatus;
-import com.tiklaisgelsin.api.domain.seeker.port.SuggestionPort;
+import com.tiklaisgelsin.api.domain.seeker.port.SeekerSuggestionPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.suggestion.IgnorePositionSuggestion;
 import com.tiklaisgelsin.api.domain.seeker.usecase.suggestion.SubmitSuggestion;
 import com.tiklaisgelsin.api.infra.jpa.entity.SubmissionEntity;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class SuggestionDataAdapter implements SuggestionPort {
+public class SeekerSuggestionDataAdapter implements SeekerSuggestionPort {
 
     private final SubmissionJpaRepository submissionJpaRepository;
     private final SuggestionJpaRepository suggestionJpaRepository;

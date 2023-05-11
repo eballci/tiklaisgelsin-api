@@ -4,7 +4,7 @@ import com.tiklaisgelsin.api.domain.common.model.Offer;
 import com.tiklaisgelsin.api.domain.employer.usecase.suggestion.IgnoreSeekerSuggestion;
 import com.tiklaisgelsin.api.domain.employer.usecase.suggestion.OfferSuggestion;
 
-public interface SuggestionPort {
+public interface EmployerSuggestionPort {
     Offer offerSuggestion(OfferSuggestion offerSuggestion);
 
     void ignoreSeekerSuggestion(IgnoreSeekerSuggestion ignoreSeekerSuggestion);

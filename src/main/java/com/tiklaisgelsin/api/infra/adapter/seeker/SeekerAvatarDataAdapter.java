@@ -1,6 +1,6 @@
 package com.tiklaisgelsin.api.infra.adapter.seeker;
 
-import com.tiklaisgelsin.api.domain.seeker.port.AvatarPort;
+import com.tiklaisgelsin.api.domain.seeker.port.SeekerAvatarPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.avatar.UpdateSeekerAvatar;
 import com.tiklaisgelsin.api.infra.jpa.entity.SeekerAvatarEntity;
 import com.tiklaisgelsin.api.infra.jpa.entity.SeekerEntity;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AvatarDataAdapter implements AvatarPort {
+public class SeekerAvatarDataAdapter implements SeekerAvatarPort {
 
     private final SeekerJpaRepository seekerJpaRepository;
     private final SeekerAvatarJpaRepository repository;

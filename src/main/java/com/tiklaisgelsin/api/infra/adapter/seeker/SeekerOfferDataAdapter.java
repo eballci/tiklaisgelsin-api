@@ -1,7 +1,7 @@
 package com.tiklaisgelsin.api.infra.adapter.seeker;
 
 import com.tiklaisgelsin.api.domain.common.model.OfferStatus;
-import com.tiklaisgelsin.api.domain.seeker.port.OfferPort;
+import com.tiklaisgelsin.api.domain.seeker.port.SeekerOfferPort;
 import com.tiklaisgelsin.api.domain.seeker.usecase.offer.AcceptOffer;
 import com.tiklaisgelsin.api.domain.seeker.usecase.offer.ReadAllOffers;
 import com.tiklaisgelsin.api.domain.seeker.usecase.offer.RefuseOffer;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class OfferDataAdapter implements OfferPort {
+public class SeekerOfferDataAdapter implements SeekerOfferPort {
 
     private final OfferJpaRepository repository;
 

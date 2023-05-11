@@ -1,6 +1,6 @@
 package com.tiklaisgelsin.api.infra.adapter.employer;
 
-import com.tiklaisgelsin.api.domain.employer.port.AvatarPort;
+import com.tiklaisgelsin.api.domain.employer.port.EmployerAvatarPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.avatar.UpdateEmployerAvatar;
 import com.tiklaisgelsin.api.infra.jpa.entity.EmployerAvatarEntity;
 import com.tiklaisgelsin.api.infra.jpa.entity.EmployerEntity;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AvatarDataAdapter implements AvatarPort {
+public class EmployerAvatarDataAdapter implements EmployerAvatarPort {
 
     private final EmployerJpaRepository employerJpaRepository;
     private final EmployerAvatarJpaRepository repository;

@@ -2,6 +2,6 @@ package com.tiklaisgelsin.api.domain.seeker.port;
 
 import com.tiklaisgelsin.api.domain.seeker.usecase.submission.RemoveSubmission;
 
-public interface SubmissionPort {
+public interface SeekerSubmissionPort {
     void removeSubmission(RemoveSubmission removeSubmission);
 }

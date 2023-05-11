@@ -1,7 +1,7 @@
 package com.tiklaisgelsin.api.infra.adapter.employer;
 
 import com.tiklaisgelsin.api.domain.common.model.SubmissionStatus;
-import com.tiklaisgelsin.api.domain.employer.port.SubmissionPort;
+import com.tiklaisgelsin.api.domain.employer.port.EmployerSubmissionPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.submission.AcceptSubmission;
 import com.tiklaisgelsin.api.domain.employer.usecase.submission.ReadAllSubmissions;
 import com.tiklaisgelsin.api.domain.employer.usecase.submission.RefuseSubmission;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class SubmissionDataAdapter implements SubmissionPort {
+public class EmployerSubmissionDataAdapter implements EmployerSubmissionPort {
 
     private final SubmissionJpaRepository repository;
 

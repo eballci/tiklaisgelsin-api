@@ -3,7 +3,7 @@ package com.tiklaisgelsin.api.domain.common.handler;
 import com.tiklaisgelsin.api.domain.common.model.Criteria;
 import com.tiklaisgelsin.api.domain.common.model.Position;
 import com.tiklaisgelsin.api.domain.common.model.Seeker;
-import com.tiklaisgelsin.api.domain.common.port.SuggestionPort;
+import com.tiklaisgelsin.api.domain.common.port.CommonSuggestionPort;
 import com.tiklaisgelsin.api.domain.common.usecase.CreateSuggestion;
 import com.tiklaisgelsin.api.domain.common.usecase.SuggestSeeker;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
@@ -22,7 +22,7 @@ public class SuggestSeekerUseCaseHandler implements VoidUseCaseHandler<SuggestSe
 
     private final PositionPort positionPort;
     private final SeekerPort seekerPort;
-    private final SuggestionPort suggestionPort;
+    private final CommonSuggestionPort commonSuggestionPort;
 
     @Async
     @Override
@@ -38,7 +38,7 @@ public class SuggestSeekerUseCaseHandler implements VoidUseCaseHandler<SuggestSe
             }
 
             if (sum / position.getCriteriaList().size() >= 50) {
-                suggestionPort.createSuggestion(
+                commonSuggestionPort.createSuggestion(
                         CreateSuggestion.builder()
                                 .positionId(position.getId())
                                 .seekerId(seeker.getId())

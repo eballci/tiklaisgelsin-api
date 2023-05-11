@@ -1,7 +1,7 @@
 package com.tiklaisgelsin.api.domain.employer.handler.offer;
 
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
-import com.tiklaisgelsin.api.domain.employer.port.OfferPort;
+import com.tiklaisgelsin.api.domain.employer.port.EmployerOfferPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.offer.RemoveOffer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RemoveOfferUseCaseHandler implements VoidUseCaseHandler<RemoveOffer> {
 
-    private final OfferPort offerPort;
+    private final EmployerOfferPort employerOfferPort;
 
     @Override
     public void handle(RemoveOffer useCase) {
-        offerPort.remove(useCase);
+        employerOfferPort.remove(useCase);
     }
 }

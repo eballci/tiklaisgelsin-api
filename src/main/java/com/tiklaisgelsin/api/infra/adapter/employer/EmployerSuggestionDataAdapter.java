@@ -2,7 +2,7 @@ package com.tiklaisgelsin.api.infra.adapter.employer;
 
 import com.tiklaisgelsin.api.domain.common.model.Offer;
 import com.tiklaisgelsin.api.domain.common.model.OfferStatus;
-import com.tiklaisgelsin.api.domain.employer.port.SuggestionPort;
+import com.tiklaisgelsin.api.domain.employer.port.EmployerSuggestionPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.suggestion.IgnoreSeekerSuggestion;
 import com.tiklaisgelsin.api.domain.employer.usecase.suggestion.OfferSuggestion;
 import com.tiklaisgelsin.api.infra.jpa.entity.OfferEntity;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class SuggestionDataAdapter implements SuggestionPort {
+public class EmployerSuggestionDataAdapter implements EmployerSuggestionPort {
 
     private final OfferJpaRepository offerJpaRepository;
     private final SuggestionJpaRepository suggestionJpaRepository;
