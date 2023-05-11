@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AvatarDataAdaprter implements AvatarPort {
+public class AvatarDataAdapter implements AvatarPort {
 
     private final SeekerJpaRepository seekerJpaRepository;
     private final SeekerAvatarJpaRepository repository;
