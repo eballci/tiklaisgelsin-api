@@ -124,4 +124,9 @@ public class PositionDataAdapter implements PositionPort {
                 .map(PositionEntity::toModel)
                 .toList();
     }
+
+    @Override
+    public boolean checkIfPositionExists(Long id) {
+        return positionJpaRepository.findById(id).isPresent();
+    }
 }
