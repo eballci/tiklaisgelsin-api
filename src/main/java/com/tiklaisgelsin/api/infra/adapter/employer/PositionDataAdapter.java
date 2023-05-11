@@ -54,7 +54,7 @@ public class PositionDataAdapter implements PositionPort {
             ExperienceCriteriaEntity experienceCriteria = new ExperienceCriteriaEntity();
             experienceCriteria.setPosition(position);
             experienceCriteria.setContent(
-                    String.join("", createPosition.getExperienceCriteria().getTitles())
+                    String.join(",", createPosition.getExperienceCriteria().getTitles())
             );
             experienceCriteria.setExpectation(createPosition.getExperienceCriteria().getMinimumYears());
             position.setExperienceCriteria(experienceCriteria);
