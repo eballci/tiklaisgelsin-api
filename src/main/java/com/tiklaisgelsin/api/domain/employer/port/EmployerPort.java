@@ -11,4 +11,6 @@ public interface EmployerPort {
     Employer createEmployer(EmployerCreate employerCreate);
 
     void updateEmployer(EmployerUpdate employerUpdate);
+
+    boolean checkIfEmployerExists(String email);
 }

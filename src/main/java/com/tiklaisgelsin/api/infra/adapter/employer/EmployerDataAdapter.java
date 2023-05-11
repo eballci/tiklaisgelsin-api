@@ -49,4 +49,9 @@ public class EmployerDataAdapter implements EmployerPort {
 
         repository.save(employer.get());
     }
+
+    @Override
+    public boolean checkIfEmployerExists(String email) {
+        return repository.findByEmail(email).isPresent();
+    }
 }

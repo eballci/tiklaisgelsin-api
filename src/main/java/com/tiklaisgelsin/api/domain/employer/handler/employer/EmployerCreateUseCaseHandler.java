@@ -1,5 +1,6 @@
 package com.tiklaisgelsin.api.domain.employer.handler.employer;
 
+import com.tiklaisgelsin.api.domain.common.exception.DuplicateEntityException;
 import com.tiklaisgelsin.api.domain.common.model.Employer;
 import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.employer.port.EmployerPort;
@@ -15,6 +16,9 @@ public class EmployerCreateUseCaseHandler implements UseCaseHandler<Employer, Em
 
     @Override
     public Employer handle(EmployerCreate useCase) {
+        if (employerPort.checkIfEmployerExists(useCase.getEmail())) {
+            throw new DuplicateEntityException("There is already an employer with email: " + useCase.getEmail());
+        }
         return employerPort.createEmployer(useCase);
     }
 }
