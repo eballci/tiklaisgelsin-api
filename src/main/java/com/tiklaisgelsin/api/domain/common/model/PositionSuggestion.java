@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class PositionSuggestion implements Comparable<PositionSuggestion> {
     private Long id;
     private int matchRate;
-    private Position position;
+    private Long positionId;
     private LocalDateTime createdAt;
 
     @Override

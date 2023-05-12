@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Offer {
     private Long id;
     private Long seekerId;
-    private Position position;
+    private Long positionId;
     private LocalDateTime createdAt;
     private OfferStatus offerStatus;
 }

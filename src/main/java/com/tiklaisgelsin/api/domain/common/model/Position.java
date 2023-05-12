@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 public class Position {
     private Long id;
-    private Employer employer;
+    private Long employerId;
     private String title;
     private String description;
     private List<Criteria> criteriaList;

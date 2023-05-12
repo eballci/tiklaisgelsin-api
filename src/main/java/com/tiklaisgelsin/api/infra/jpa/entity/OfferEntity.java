@@ -31,7 +31,7 @@ public class OfferEntity extends AbstractEntity {
         return Offer.builder()
                 .id(getId())
                 .seekerId(seeker.getId())
-                .position(position.toModel())
+                .positionId(position.getId())
                 .offerStatus(OfferStatus.generate(status))
                 .build();
     }

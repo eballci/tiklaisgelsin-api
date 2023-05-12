@@ -30,7 +30,7 @@ public class SuggestionEntity extends AbstractEntity {
     public PositionSuggestion toPositionSuggestionModel() {
         return PositionSuggestion.builder()
                 .id(getId())
-                .position(position.toModel())
+                .positionId(position.getId())
                 .matchRate(matchRate)
                 .createdAt(getCreatedAt())
                 .build();
@@ -39,8 +39,8 @@ public class SuggestionEntity extends AbstractEntity {
     public SeekerSuggestion toSeekerSuggestionModel() {
         return SeekerSuggestion.builder()
                 .id(getId())
-                .seeker(seeker.toModel())
-                .position(position.toModel())
+                .seekerId(seeker.getId())
+                .positionId(position.getId())
                 .matchRate(matchRate)
                 .createdAt(getCreatedAt())
                 .build();

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Submission {
     private Long id;
     private Long seekerId;
-    private Position position;
+    private Long positionId;
     private SubmissionStatus submissionStatus;
     private LocalDateTime createdAt;
 }

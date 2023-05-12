@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -63,7 +62,7 @@ public class PositionEntity extends AbstractEntity {
                 .title(title)
                 .description(description)
                 .criteriaList(criteriaList)
-                .employer(employer.toModel())
+                .employerId(employer.getId())
                 .build();
     }
 }

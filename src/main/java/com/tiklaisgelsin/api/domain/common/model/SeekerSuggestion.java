@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Builder
 public class SeekerSuggestion implements Comparable<SeekerSuggestion> {
     private Long id;
-    private Seeker seeker;
-    private Position position;
+    private Long seekerId;
+    private Long positionId;
     private int matchRate;
     private LocalDateTime createdAt;
 

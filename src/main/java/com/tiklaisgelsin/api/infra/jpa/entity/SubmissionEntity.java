@@ -31,7 +31,7 @@ public class SubmissionEntity extends AbstractEntity {
         return Submission.builder()
                 .id(getId())
                 .seekerId(seeker.getId())
-                .position(position.toModel())
+                .positionId(position.getId())
                 .submissionStatus(SubmissionStatus.generate(status))
                 .createdAt(getCreatedAt())
                 .build();
