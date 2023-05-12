@@ -32,7 +32,7 @@ public class EducationDataAdapter implements EducationPort {
         education.setInstitution(useCase.getInstitution());
         education.setDescription(useCase.getDescription());
         education.setStart(useCase.getStart());
-        education.setEnd(useCase.getEnd());
+        education.setCompletion(useCase.getEnd());
         education.setGPA(useCase.getGPA());
         education.setLevel(useCase.getLevel());
         education.setSeeker(seeker.get());
@@ -50,7 +50,7 @@ public class EducationDataAdapter implements EducationPort {
         education.get().setInstitution(useCase.getInstitution());
         education.get().setDescription(useCase.getDescription());
         education.get().setStart(useCase.getStart());
-        education.get().setEnd(useCase.getEnd());
+        education.get().setCompletion(useCase.getEnd());
         education.get().setGPA(useCase.getGPA());
         education.get().setLevel(useCase.getLevel());
 

@@ -34,7 +34,7 @@ public class ExperienceDataAdapter implements ExperiencePort {
         experience.setPosition(addSeekerExperience.getPosition());
         experience.setDescription(addSeekerExperience.getDescription());
         experience.setStart(addSeekerExperience.getStart());
-        experience.setEnd(addSeekerExperience.getEnd());
+        experience.setCompletion(addSeekerExperience.getEnd());
         return experienceJpaRepository.save(experience).toModel();
     }
 
@@ -50,7 +50,7 @@ public class ExperienceDataAdapter implements ExperiencePort {
         experience.get().setPosition(updateSeekerExperience.getPosition());
         experience.get().setDescription(updateSeekerExperience.getDescription());
         experience.get().setStart(updateSeekerExperience.getStart());
-        experience.get().setEnd(updateSeekerExperience.getEnd());
+        experience.get().setCompletion(updateSeekerExperience.getEnd());
         experienceJpaRepository.save(experience.get());
     }
 
