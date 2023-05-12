@@ -29,7 +29,7 @@ public class ExperienceEntity extends AbstractEntity {
     private LocalDate start;
 
     @Column
-    private LocalDate end;
+    private LocalDate completion;
 
     @ManyToOne
     @JoinColumn(name = "seeker_id")
@@ -43,7 +43,7 @@ public class ExperienceEntity extends AbstractEntity {
                 .position(position)
                 .description(description)
                 .start(start)
-                .end(end)
+                .end(completion)
                 .build();
     }
 }

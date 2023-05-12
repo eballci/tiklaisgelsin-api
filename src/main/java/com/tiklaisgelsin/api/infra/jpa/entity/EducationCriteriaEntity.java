@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "language_criteria")
+@Table(name = "education_criteria")
 public class EducationCriteriaEntity extends AbstractEntity {
 
     @Column(nullable = false)

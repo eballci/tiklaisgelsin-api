@@ -34,7 +34,7 @@ public class EducationEntity extends AbstractEntity {
     private LocalDate start;
 
     @Column
-    private LocalDate end;
+    private LocalDate completion;
 
     @Column
     private int level;
@@ -47,7 +47,7 @@ public class EducationEntity extends AbstractEntity {
                 .description(description)
                 .GPA(GPA)
                 .start(start)
-                .end(end)
+                .end(completion)
                 .educationLevel(EducationLevel.generate(level))
                 .build();
     }
