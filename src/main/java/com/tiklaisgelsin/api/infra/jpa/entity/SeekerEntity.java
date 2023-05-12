@@ -39,25 +39,25 @@ public class SeekerEntity extends AbstractEntity {
     @OneToOne(mappedBy = "seeker")
     private SeekerAvatarEntity avatar;
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<EducationEntity> educations = new LinkedList<>();
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ExperienceEntity> experiences = new LinkedList<>();
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<LanguageEntity> languages = new LinkedList<>();
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PhoneEntity> phones = new LinkedList<>();
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OfferEntity> offers = new LinkedList<>();
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<SubmissionEntity> submissions = new LinkedList<>();
 
-    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seeker", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<SuggestionEntity> suggestions = new LinkedList<>();
 
     public Seeker toModel() {

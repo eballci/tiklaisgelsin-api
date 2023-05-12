@@ -31,16 +31,16 @@ public class PositionEntity extends AbstractEntity {
     @OneToOne(mappedBy = "position")
     private EducationCriteriaEntity educationCriteria;
 
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<LanguageCriteriaEntity> languageCriterias = new LinkedList<>();
 
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OfferEntity> offers = new LinkedList<>();
 
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<SubmissionEntity> submissions = new LinkedList<>();
 
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<SuggestionEntity> suggestions = new LinkedList<>();
 
     public Position toModel() {
