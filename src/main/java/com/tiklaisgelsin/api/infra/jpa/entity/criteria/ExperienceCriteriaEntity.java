@@ -15,10 +15,7 @@ import java.util.Arrays;
 @Table(name = "experience_criteria")
 public class ExperienceCriteriaEntity extends CriteriaEntity {
 
-    @Column(nullable = false)
     private String content;
-
-    @Column(nullable = false)
     private int expectation;
 
     public ExperienceCriteria toModel() {

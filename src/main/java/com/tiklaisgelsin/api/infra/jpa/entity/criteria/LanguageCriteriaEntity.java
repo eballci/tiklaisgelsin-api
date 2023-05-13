@@ -13,10 +13,7 @@ import lombok.Setter;
 @Table(name = "language_criteria")
 public class LanguageCriteriaEntity extends CriteriaEntity {
 
-    @Column(nullable = false)
     private String language;
-
-    @Column(nullable = false)
     private int expectedLevel;
 
     public LanguageCriteria toModel() {

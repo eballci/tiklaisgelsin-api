@@ -14,10 +14,7 @@ import lombok.Setter;
 @Table(name = "education_criteria")
 public class EducationCriteriaEntity extends CriteriaEntity {
 
-    @Column(nullable = false)
     private String study;
-
-    @Column(nullable = false)
     private int expectedLevel;
 
     public EducationCriteria toModel() {
