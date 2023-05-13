@@ -3,6 +3,7 @@ package com.tiklaisgelsin.api.infra.rest.employer;
 import com.tiklaisgelsin.api.domain.common.model.Employer;
 import com.tiklaisgelsin.api.domain.common.usecase.UseCaseHandler;
 import com.tiklaisgelsin.api.domain.common.usecase.VoidUseCaseHandler;
+import com.tiklaisgelsin.api.domain.employer.usecase.avatar.UpdateEmployerAvatar;
 import com.tiklaisgelsin.api.domain.employer.usecase.employer.EmployerCreate;
 import com.tiklaisgelsin.api.domain.employer.usecase.employer.EmployerGet;
 import com.tiklaisgelsin.api.domain.employer.usecase.employer.EmployerUpdate;
@@ -13,6 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Base64;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +27,7 @@ public class EmployerController {
     private final UseCaseHandler<Employer, EmployerGet> getUseCaseHandler;
     private final UseCaseHandler<Employer, EmployerCreate> createUseCaseHandler;
     private final VoidUseCaseHandler<EmployerUpdate> updateUseCaseHandler;
+    private final VoidUseCaseHandler<UpdateEmployerAvatar> updateEmployerAvatarVoidUseCaseHandler;
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -57,5 +63,15 @@ public class EmployerController {
                         .webSite(request.getWebSite())
                         .scale(request.getScale())
                         .build());
+    }
+
+    @PatchMapping("avatar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateEmployerAvatar(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws IOException {
+        String base64 = Base64.getEncoder().encodeToString(file.getBytes());
+        updateEmployerAvatarVoidUseCaseHandler.handle(UpdateEmployerAvatar.builder()
+                .employerId(id)
+                .avatar(base64)
+                .build());
     }
 }
