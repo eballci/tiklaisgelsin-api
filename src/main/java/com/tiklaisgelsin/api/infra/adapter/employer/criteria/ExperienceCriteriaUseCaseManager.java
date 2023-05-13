@@ -28,11 +28,6 @@ public class ExperienceCriteriaUseCaseManager implements CriteriaUseCaseManager<
     }
 
     @Override
-    public void clearCriteriasForPosition(Long positionId) {
-        repository.deleteByPositionId(positionId);
-    }
-
-    @Override
     public boolean isUseCaseMyType(Class<? extends CreateCriteria> concrete) {
         return concrete == CreateExperienceCriteria.class;
     }

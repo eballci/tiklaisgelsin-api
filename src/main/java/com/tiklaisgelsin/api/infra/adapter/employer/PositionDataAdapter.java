@@ -11,6 +11,10 @@ import com.tiklaisgelsin.api.infra.jpa.entity.EmployerEntity;
 import com.tiklaisgelsin.api.infra.jpa.entity.PositionEntity;
 import com.tiklaisgelsin.api.infra.jpa.repository.EmployerJpaRepository;
 import com.tiklaisgelsin.api.infra.jpa.repository.PositionJpaRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PositionDataAdapter implements PositionPort {
 
+    private final EntityManagerFactory entityManagerFactory;
     private final EmployerJpaRepository employerJpaRepository;
     private final PositionJpaRepository positionJpaRepository;
     private final List<CriteriaUseCaseManager<? extends CreateCriteria>> criteriaUseCaseManagers;
@@ -68,9 +73,20 @@ public class PositionDataAdapter implements PositionPort {
         position.get().setDescription(updatePosition.getDescription());
         positionJpaRepository.saveAndFlush(position.get());
 
-        criteriaUseCaseManagers.forEach(manager -> {
-            manager.clearCriteriasForPosition(position.get().getId());
-        });
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Query query = em.createQuery("delete from CriteriaEntity ce where ce.position.id = :positionId");
+            query.setParameter("positionId", position.get().getId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
 
         for (CreateCriteria criteria : updatePosition.getCriteriaList()) {
             CriteriaUseCaseManager<?> manager = criteriaUseCaseManagers.stream()

@@ -26,11 +26,6 @@ public class EducationCriteriaUseCaseManager implements CriteriaUseCaseManager<C
     }
 
     @Override
-    public void clearCriteriasForPosition(Long positionId) {
-        repository.deleteByPositionId(positionId);
-    }
-
-    @Override
     public boolean isUseCaseMyType(Class<? extends CreateCriteria> concrete) {
         return concrete == CreateEducationCriteria.class;
     }
