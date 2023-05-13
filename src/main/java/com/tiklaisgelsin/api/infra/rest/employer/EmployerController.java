@@ -9,10 +9,8 @@ import com.tiklaisgelsin.api.domain.employer.usecase.employer.EmployerGet;
 import com.tiklaisgelsin.api.domain.employer.usecase.employer.EmployerUpdate;
 import com.tiklaisgelsin.api.infra.jpa.entity.EmployerEntity;
 import com.tiklaisgelsin.api.infra.jpa.repository.EmployerJpaRepository;
-import com.tiklaisgelsin.api.infra.rest.employer.dto.employer.EmployerCreateRequest;
-import com.tiklaisgelsin.api.infra.rest.employer.dto.employer.EmployerForVisitResponse;
-import com.tiklaisgelsin.api.infra.rest.employer.dto.employer.EmployerLoginRequest;
-import com.tiklaisgelsin.api.infra.rest.employer.dto.employer.EmployerUpdateRequest;
+import com.tiklaisgelsin.api.infra.rest.employer.dto.employer.*;
+import com.tiklaisgelsin.api.infra.rest.employer.dto.position.criteria.response.CriteriaResponseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +27,7 @@ import java.util.Optional;
 @RequestMapping("/employer/")
 public class EmployerController {
 
+    private final CriteriaResponseService criteriaResponseService;
     private final EmployerJpaRepository repository;
     private final UseCaseHandler<Employer, EmployerGet> getUseCaseHandler;
     private final UseCaseHandler<Employer, EmployerCreate> createUseCaseHandler;
@@ -91,5 +90,16 @@ public class EmployerController {
                 .body("The email or password is incorrect.");
 
         return ResponseEntity.status(HttpStatus.OK).body(employer.get().getId());
+    }
+
+    @GetMapping("me/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public EmployerResponse getEmployer(@PathVariable Long id) {
+        return EmployerResponse.fromModel(
+                criteriaResponseService,
+                getUseCaseHandler.handle(
+                        EmployerGet.builder()
+                                .employerId(id)
+                                .build()));
     }
 }
