@@ -1,6 +1,8 @@
-package com.tiklaisgelsin.api.infra.jpa.entity;
+package com.tiklaisgelsin.api.infra.jpa.entity.criteria;
 
 import com.tiklaisgelsin.api.domain.common.model.ExperienceCriteria;
+import com.tiklaisgelsin.api.infra.jpa.entity.AbstractEntity;
+import com.tiklaisgelsin.api.infra.jpa.entity.PositionEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,17 +13,13 @@ import java.util.Arrays;
 @Setter
 @Entity
 @Table(name = "experience_criteria")
-public class ExperienceCriteriaEntity extends AbstractEntity {
+public class ExperienceCriteriaEntity extends CriteriaEntity {
 
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private int expectation;
-
-    @OneToOne
-    @JoinColumn(name = "position_id")
-    private PositionEntity position;
 
     public ExperienceCriteria toModel() {
         return ExperienceCriteria.builder()

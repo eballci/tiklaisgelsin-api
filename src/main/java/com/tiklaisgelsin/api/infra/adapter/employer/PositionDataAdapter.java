@@ -5,8 +5,12 @@ import com.tiklaisgelsin.api.domain.employer.port.PositionPort;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.CreatePosition;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.DeletePosition;
 import com.tiklaisgelsin.api.domain.employer.usecase.position.UpdatePosition;
-import com.tiklaisgelsin.api.infra.jpa.entity.*;
-import com.tiklaisgelsin.api.infra.jpa.repository.*;
+import com.tiklaisgelsin.api.domain.employer.usecase.position.criteria.CreateCriteria;
+import com.tiklaisgelsin.api.infra.adapter.employer.criteria.CriteriaUseCaseManager;
+import com.tiklaisgelsin.api.infra.jpa.entity.EmployerEntity;
+import com.tiklaisgelsin.api.infra.jpa.entity.PositionEntity;
+import com.tiklaisgelsin.api.infra.jpa.repository.EmployerJpaRepository;
+import com.tiklaisgelsin.api.infra.jpa.repository.PositionJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +23,7 @@ public class PositionDataAdapter implements PositionPort {
 
     private final EmployerJpaRepository employerJpaRepository;
     private final PositionJpaRepository positionJpaRepository;
-    private final LanguageCriteriaJpaRepository languageCriteriaJpaRepository;
-    private final EducationCriteriaJpaRepository educationCriteriaJpaRepository;
-    private final ExperienceCriteriaJpaRepository experienceCriteriaJpaRepository;
+    private final List<CriteriaUseCaseManager<? extends CreateCriteria>> criteriaUseCaseManagers;
 
     @Override
     public Position getPosition(Long id) {
@@ -42,31 +44,16 @@ public class PositionDataAdapter implements PositionPort {
         position.setDescription(createPosition.getDescription());
         position.setEmployer(employer.get());
 
-        if (createPosition.getEducationCriteria() != null) {
-            EducationCriteriaEntity educationCriteria = new EducationCriteriaEntity();
-            educationCriteria.setPosition(position);
-            educationCriteria.setStudy(createPosition.getEducationCriteria().getStudy());
-            educationCriteria.setExpectedLevel(createPosition.getEducationCriteria().getMinEducationLevel().getLevel());
-            position.setEducationCriteria(educationCriteria);
-        }
+        position = positionJpaRepository.saveAndFlush(position);
 
-        if (createPosition.getExperienceCriteria() != null) {
-            ExperienceCriteriaEntity experienceCriteria = new ExperienceCriteriaEntity();
-            experienceCriteria.setPosition(position);
-            experienceCriteria.setContent(
-                    String.join(",", createPosition.getExperienceCriteria().getTitles())
-            );
-            experienceCriteria.setExpectation(createPosition.getExperienceCriteria().getMinimumYears());
-            position.setExperienceCriteria(experienceCriteria);
-        }
+        for (CreateCriteria criteria : createPosition.getCriteriaList()) {
+            CriteriaUseCaseManager<?> manager = criteriaUseCaseManagers.stream()
+                    .filter(m -> m.isUseCaseMyType(criteria.getClass()))
+                    .findFirst()
+                    .orElseThrow(RuntimeException::new);
 
-        createPosition.getLanguageCriteriaList().forEach(lc -> {
-            LanguageCriteriaEntity languageCriteria = new LanguageCriteriaEntity();
-            languageCriteria.setPosition(position);
-            languageCriteria.setLanguage(lc.getExpectedLanguage());
-            languageCriteria.setExpectedLevel(lc.getExpectedLevel().getLevel());
-            position.getLanguageCriterias().add(languageCriteria);
-        });
+            position.getCriteriaList().add(manager.saveCriteria(criteria, position));
+        }
 
         return positionJpaRepository.save(position).toModel();
     }
@@ -77,40 +64,22 @@ public class PositionDataAdapter implements PositionPort {
 
         if (position.isEmpty()) return;
 
-        languageCriteriaJpaRepository.deleteAllByPositionId(updatePosition.getPositionId());
-        educationCriteriaJpaRepository.deleteByPositionId(updatePosition.getPositionId());
-        experienceCriteriaJpaRepository.deleteByPositionId(updatePosition.getPositionId());
-
         position.get().setTitle(updatePosition.getTitle());
         position.get().setDescription(updatePosition.getDescription());
+        positionJpaRepository.saveAndFlush(position.get());
 
-        if (updatePosition.getEducationCriteria() != null) {
-            EducationCriteriaEntity educationCriteria = new EducationCriteriaEntity();
-            educationCriteria.setPosition(position.get());
-            educationCriteria.setStudy(updatePosition.getEducationCriteria().getStudy());
-            educationCriteria.setExpectedLevel(updatePosition.getEducationCriteria().getMinEducationLevel().getLevel());
-            position.get().setEducationCriteria(educationCriteria);
-        }
-
-        if (updatePosition.getExperienceCriteria() != null) {
-            ExperienceCriteriaEntity experienceCriteria = new ExperienceCriteriaEntity();
-            experienceCriteria.setPosition(position.get());
-            experienceCriteria.setContent(
-                    String.join(",", updatePosition.getExperienceCriteria().getTitles())
-            );
-            experienceCriteria.setExpectation(updatePosition.getExperienceCriteria().getMinimumYears());
-            position.get().setExperienceCriteria(experienceCriteria);
-        }
-
-        updatePosition.getLanguageCriteriaList().forEach(lc -> {
-            LanguageCriteriaEntity languageCriteria = new LanguageCriteriaEntity();
-            languageCriteria.setPosition(position.get());
-            languageCriteria.setLanguage(lc.getExpectedLanguage());
-            languageCriteria.setExpectedLevel(lc.getExpectedLevel().getLevel());
-            position.get().getLanguageCriterias().add(languageCriteria);
+        criteriaUseCaseManagers.forEach(manager -> {
+            manager.clearCriteriasForPosition(position.get().getId());
         });
 
-        positionJpaRepository.save(position.get());
+        for (CreateCriteria criteria : updatePosition.getCriteriaList()) {
+            CriteriaUseCaseManager<?> manager = criteriaUseCaseManagers.stream()
+                    .filter(m -> m.isUseCaseMyType(criteria.getClass()))
+                    .findFirst()
+                    .orElseThrow(RuntimeException::new);
+
+            position.get().getCriteriaList().add(manager.saveCriteria(criteria, position.get()));
+        }
     }
 
     @Override
