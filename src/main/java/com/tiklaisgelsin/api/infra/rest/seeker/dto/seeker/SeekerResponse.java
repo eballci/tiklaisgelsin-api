@@ -48,6 +48,7 @@ public class SeekerResponse {
                 .email(seeker.getEmail())
                 .biography(seeker.getBiography())
                 .birth(seeker.getBirth())
+                .languages(seeker.getLanguages().stream().map(LanguageResponse::fromModel).toList())
                 .phones(seeker.getPhones().stream().map(PhoneResponse::fromModel).toList())
                 .experiences(seeker.getExperiences().stream().map(ExperienceResponse::fromModel).toList())
                 .educations(seeker.getEducations().stream().map(EducationResponse::fromModel).toList())
