@@ -23,7 +23,7 @@ public class EmployerEntity extends AbstractEntity {
     @OneToOne(mappedBy = "employer")
     private EmployerAvatarEntity avatar;
 
-    @Column
+    @Column(columnDefinition = "text")
     private String description;
 
     @Column(nullable = false)

@@ -18,22 +18,22 @@ import java.util.stream.Collectors;
 @Table(name = "seeker")
 public class SeekerEntity extends AbstractEntity {
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String surname;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column
+    @Column(columnDefinition = "text")
     private String biography;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate birth;
 
     @OneToOne(mappedBy = "seeker")

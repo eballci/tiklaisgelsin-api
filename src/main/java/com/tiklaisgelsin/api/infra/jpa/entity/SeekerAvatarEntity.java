@@ -10,7 +10,6 @@ import lombok.Setter;
 @Table(name = "seeker_avatar")
 public class SeekerAvatarEntity extends AbstractEntity {
 
-    @Lob
     @Column(nullable = false, columnDefinition = "text")
     private String file;
 
