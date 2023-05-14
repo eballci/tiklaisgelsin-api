@@ -24,6 +24,6 @@ public class ExperienceCriteria implements Criteria {
             }
         }
 
-        return (int) ((employedMonths / minimumYears * 12 * 100) % 101);
+        return (int) ((float) employedMonths / (float) (minimumYears * 12) * 100) % 101;
     }
 }

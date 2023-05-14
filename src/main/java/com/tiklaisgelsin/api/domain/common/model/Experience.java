@@ -21,6 +21,6 @@ public class Experience {
     public long getMonthsEmployed() {
         return ChronoUnit
                 .MONTHS
-                .between(start.withDayOfMonth(1), Optional.of(end).orElse(LocalDate.now()).withDayOfMonth(1));
+                .between(start.withDayOfMonth(1), Optional.ofNullable(end).orElse(LocalDate.now()).withDayOfMonth(1));
     }
 }
