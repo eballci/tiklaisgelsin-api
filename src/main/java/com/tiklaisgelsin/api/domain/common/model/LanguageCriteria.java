@@ -15,7 +15,7 @@ public class LanguageCriteria implements Criteria {
     public int getPoint(Seeker seeker) {
         for (Language iter : seeker.getLanguages()) {
             if (iter.getName().compareTo(expectedLanguage) == 0) {
-                return (iter.getLevel().getLevel() / expectedLevel.getLevel() * 100) % 101;
+                return (int) ((float) iter.getLevel().getLevel() / (float) expectedLevel.getLevel() * 100) % 101;
             }
         }
 

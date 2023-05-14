@@ -16,7 +16,7 @@ public class EducationCriteria implements Criteria {
 
         for (Education education : seeker.getEducations()) {
             if (education.getStudy().toLowerCase().compareTo(study.toLowerCase()) == 0) {
-                int calc = (education.getEducationLevel().getLevel() / minEducationLevel.getLevel() * 100) % 101;
+                int calc = (int) ((float) education.getEducationLevel().getLevel() / (float) minEducationLevel.getLevel() * 100) % 101;
 
                 if (calc > point) {
                     point = calc;
