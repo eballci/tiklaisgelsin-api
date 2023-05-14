@@ -37,7 +37,7 @@ public class SeekerSuggestionDataAdapter implements SeekerSuggestionPort {
         submission.setStatus(SubmissionStatus.ISSUED.getLevel());
         submission.setEmployer(suggestion.get().getEmployer());
         submission.setPosition(suggestion.get().getPosition());
-        submission.setEmployer(suggestion.get().getEmployer());
+        submission.setSeeker(suggestion.get().getSeeker());
         return submissionJpaRepository.save(submission).toModel();
     }
 
