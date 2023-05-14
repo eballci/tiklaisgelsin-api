@@ -29,6 +29,7 @@ public class ExperienceDataAdapter implements ExperiencePort {
         if (seeker.isEmpty()) return null;
 
         ExperienceEntity experience = new ExperienceEntity();
+        experience.setSeeker(seeker.get());
         experience.setCompany(addSeekerExperience.getCompany());
         experience.setDepartment(addSeekerExperience.getDepartment());
         experience.setPosition(addSeekerExperience.getPosition());
