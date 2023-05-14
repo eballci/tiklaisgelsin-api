@@ -9,6 +9,10 @@ import com.tiklaisgelsin.api.infra.jpa.entity.SuggestionEntity;
 import com.tiklaisgelsin.api.infra.jpa.repository.PositionJpaRepository;
 import com.tiklaisgelsin.api.infra.jpa.repository.SeekerJpaRepository;
 import com.tiklaisgelsin.api.infra.jpa.repository.SuggestionJpaRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CommonSuggestionDataAdapter implements CommonSuggestionPort {
 
+    private final EntityManagerFactory entityManagerFactory;
     private final SeekerJpaRepository seekerJpaRepository;
     private final PositionJpaRepository positionJpaRepository;
     private final SuggestionJpaRepository suggestionJpaRepository;
@@ -39,6 +44,19 @@ public class CommonSuggestionDataAdapter implements CommonSuggestionPort {
 
     @Override
     public void clearAllSeekerSuggestions(ClearSeekerSuggestionsForPosition useCase) {
-        suggestionJpaRepository.deleteAllByPositionId(useCase.getPositionId());
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Query query = em.createQuery("delete from SuggestionEntity se where se.position.id = :positionId");
+            query.setParameter("positionId", useCase.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
     }
 }
