@@ -14,7 +14,7 @@ public class ExperienceCriteriaUseCaseCreator implements CriteriaUseCaseCreator<
     public CreateCriteria getUseCaseInstance(CriteriaRequest abstractCriteriaRequest) {
         return CreateExperienceCriteria.builder()
                 .title(
-                        Optional.ofNullable(abstractCriteriaRequest.getData().get("titles"))
+                        Optional.ofNullable(abstractCriteriaRequest.getData().get("title"))
                                 .map(data -> (String) data)
                                 .orElseThrow(() -> new MissingRequestPropertyException(
                                         "Experience criteria object must have 'titles' property"
