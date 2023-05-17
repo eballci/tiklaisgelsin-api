@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,6 +17,7 @@ public class SubmissionResponse {
     private Long positionId;
     private Long seekerId;
     private int status;
+    private LocalDateTime createdAt;
 
     public static SubmissionResponse fromModel(Submission submission) {
         return SubmissionResponse.builder()
@@ -22,6 +25,7 @@ public class SubmissionResponse {
                 .positionId(submission.getPositionId())
                 .seekerId(submission.getSeekerId())
                 .status(submission.getSubmissionStatus().getLevel())
+                .createdAt(submission.getCreatedAt())
                 .build();
     }
 }
