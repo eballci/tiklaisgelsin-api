@@ -15,12 +15,12 @@ import java.util.Arrays;
 @Table(name = "experience_criteria")
 public class ExperienceCriteriaEntity extends CriteriaEntity {
 
-    private String content;
+    private String title;
     private int expectation;
 
     public ExperienceCriteria toModel() {
         return ExperienceCriteria.builder()
-                .titles(Arrays.stream(content.split(",")).toList())
+                .title(title.trim())
                 .minimumYears(expectation)
                 .build();
     }

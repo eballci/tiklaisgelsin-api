@@ -5,7 +5,6 @@ import com.tiklaisgelsin.api.domain.employer.usecase.position.criteria.CreateExp
 import com.tiklaisgelsin.api.infra.rest.common.exception.MissingRequestPropertyException;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -14,9 +13,9 @@ public class ExperienceCriteriaUseCaseCreator implements CriteriaUseCaseCreator<
     @Override
     public CreateCriteria getUseCaseInstance(CriteriaRequest abstractCriteriaRequest) {
         return CreateExperienceCriteria.builder()
-                .titles(
+                .title(
                         Optional.ofNullable(abstractCriteriaRequest.getData().get("titles"))
-                                .map(data -> (List<String>) data)
+                                .map(data -> (String) data)
                                 .orElseThrow(() -> new MissingRequestPropertyException(
                                         "Experience criteria object must have 'titles' property"
                                 ))

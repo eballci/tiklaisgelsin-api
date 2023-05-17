@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 @Builder
 public class CreateExperienceCriteria implements CreateCriteria {
-    private List<String> titles;
+    private String title;
     private int minimumYears;
 }

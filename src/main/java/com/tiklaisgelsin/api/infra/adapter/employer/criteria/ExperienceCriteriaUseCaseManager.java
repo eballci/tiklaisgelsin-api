@@ -21,7 +21,7 @@ public class ExperienceCriteriaUseCaseManager implements CriteriaUseCaseManager<
     public CriteriaEntity saveCriteria(CreateCriteria abstractCriteria, PositionEntity position) {
         CreateExperienceCriteria criteria = (CreateExperienceCriteria) abstractCriteria;
         ExperienceCriteriaEntity c = new ExperienceCriteriaEntity();
-        c.setContent(String.join(",", criteria.getTitles()));
+        c.setTitle(criteria.getTitle());
         c.setExpectation(criteria.getMinimumYears());
         c.setPosition(position);
         return repository.saveAndFlush(c);

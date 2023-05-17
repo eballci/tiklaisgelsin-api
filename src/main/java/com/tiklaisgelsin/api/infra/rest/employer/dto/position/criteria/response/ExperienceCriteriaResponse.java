@@ -18,13 +18,13 @@ public class ExperienceCriteriaResponse implements CriteriaResponse {
 
     @JsonIgnore
     private final String type = "experience";
-    private List<String> titles;
+    private String title;
     private int minimumYears;
 
     @Override
     public void fromModel(Criteria c) {
         ExperienceCriteria criteria = (ExperienceCriteria) c;
-        titles = criteria.getTitles();
+        title = criteria.getTitle();
         minimumYears = criteria.getMinimumYears();
     }
 }
