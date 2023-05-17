@@ -25,6 +25,7 @@ public class EmployerResponse {
     private String avatar;
     private String name;
     private String description;
+    private String email;
     private String webSite;
     private int scale;
     private List<PositionResponse> openPositions;
@@ -38,6 +39,7 @@ public class EmployerResponse {
                 .avatar(employer.getAvatar())
                 .name(employer.getName())
                 .description(employer.getDescription())
+                .email(employer.getEmail())
                 .webSite(employer.getWebSite())
                 .scale(employer.getScale())
                 .openPositions(employer.getOpenPositions().stream().map(p -> PositionResponse.fromModel(service, p)).toList())
