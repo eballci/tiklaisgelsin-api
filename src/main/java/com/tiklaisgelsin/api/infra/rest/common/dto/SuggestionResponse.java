@@ -41,6 +41,8 @@ public class SuggestionResponse implements Comparable<SuggestionResponse> {
 
     @Override
     public int compareTo(SuggestionResponse o) {
-        return -Integer.compare(this.matchRate, o.matchRate);
+        if (-Integer.compare(this.matchRate, o.matchRate) != 0)
+            return -Integer.compare(this.matchRate, o.matchRate);
+        return -createdAt.compareTo(o.createdAt);
     }
 }

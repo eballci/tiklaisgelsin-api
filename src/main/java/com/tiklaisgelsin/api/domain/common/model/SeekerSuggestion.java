@@ -16,6 +16,8 @@ public class SeekerSuggestion implements Comparable<SeekerSuggestion> {
 
     @Override
     public int compareTo(SeekerSuggestion o) {
-        return -Integer.compare(this.matchRate, o.matchRate);
+        if (-Integer.compare(this.matchRate, o.matchRate) != 0)
+            return -Integer.compare(this.matchRate, o.matchRate);
+        return -createdAt.compareTo(o.createdAt);
     }
 }
