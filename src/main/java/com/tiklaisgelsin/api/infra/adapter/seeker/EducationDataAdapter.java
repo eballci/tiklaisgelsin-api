@@ -9,6 +9,10 @@ import com.tiklaisgelsin.api.infra.jpa.entity.EducationEntity;
 import com.tiklaisgelsin.api.infra.jpa.entity.SeekerEntity;
 import com.tiklaisgelsin.api.infra.jpa.repository.EducationJpaRepository;
 import com.tiklaisgelsin.api.infra.jpa.repository.SeekerJpaRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EducationDataAdapter implements EducationPort {
 
+    private final EntityManagerFactory entityManagerFactory;
     private final SeekerJpaRepository seekerJpaRepository;
     private final EducationJpaRepository educationJpaRepository;
 
@@ -59,6 +64,19 @@ public class EducationDataAdapter implements EducationPort {
 
     @Override
     public void removeEducation(RemoveSeekerEducation useCase) {
-        educationJpaRepository.deleteById(useCase.getEducationId());
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Query query = em.createQuery("delete from EducationEntity ee where ee.id = :educationId");
+            query.setParameter("educationId", useCase.getEducationId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
     }
 }

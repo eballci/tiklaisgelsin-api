@@ -9,6 +9,10 @@ import com.tiklaisgelsin.api.infra.jpa.entity.ExperienceEntity;
 import com.tiklaisgelsin.api.infra.jpa.entity.SeekerEntity;
 import com.tiklaisgelsin.api.infra.jpa.repository.ExperienceJpaRepository;
 import com.tiklaisgelsin.api.infra.jpa.repository.SeekerJpaRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ExperienceDataAdapter implements ExperiencePort {
 
+    private final EntityManagerFactory entityManagerFactory;
     private final SeekerJpaRepository seekerJpaRepository;
     private final ExperienceJpaRepository experienceJpaRepository;
 
@@ -57,6 +62,19 @@ public class ExperienceDataAdapter implements ExperiencePort {
 
     @Override
     public void removeExperience(RemoveSeekerExperience removeSeekerExperience) {
-        experienceJpaRepository.deleteById(removeSeekerExperience.getExperienceId());
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Query query = em.createQuery("delete from ExperienceEntity ee where ee.id = :experienceId");
+            query.setParameter("experienceId", removeSeekerExperience.getExperienceId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
     }
 }

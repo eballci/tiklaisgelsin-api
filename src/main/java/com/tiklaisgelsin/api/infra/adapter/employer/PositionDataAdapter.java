@@ -100,7 +100,45 @@ public class PositionDataAdapter implements PositionPort {
 
     @Override
     public void removePosition(DeletePosition deletePosition) {
-        positionJpaRepository.deleteById(deletePosition.getPositionId());
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Query query;
+
+        try {
+            tx.begin();
+            query = em.createQuery("delete from CriteriaEntity ce where ce.position.id = :positionId");
+            query.setParameter("positionId", deletePosition.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+
+            tx.begin();
+            query = em.createQuery("delete from OfferEntity oe where oe.position.id = :positionId");
+            query.setParameter("positionId", deletePosition.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+
+            tx.begin();
+            query = em.createQuery("delete from SubmissionEntity se where se.position.id = :positionId");
+            query.setParameter("positionId", deletePosition.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+
+            tx.begin();
+            query = em.createQuery("delete from SuggestionEntity se where se.position.id = :positionId");
+            query.setParameter("positionId", deletePosition.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+
+            tx.begin();
+            query = em.createQuery("delete from PositionEntity pe where pe.id = :positionId");
+            query.setParameter("positionId", deletePosition.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
     }
 
     @Override

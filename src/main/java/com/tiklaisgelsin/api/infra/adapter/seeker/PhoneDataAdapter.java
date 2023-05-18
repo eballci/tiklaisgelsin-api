@@ -9,6 +9,10 @@ import com.tiklaisgelsin.api.infra.jpa.entity.PhoneEntity;
 import com.tiklaisgelsin.api.infra.jpa.entity.SeekerEntity;
 import com.tiklaisgelsin.api.infra.jpa.repository.PhoneJpaRepository;
 import com.tiklaisgelsin.api.infra.jpa.repository.SeekerJpaRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PhoneDataAdapter implements PhonePort {
 
+    private final EntityManagerFactory entityManagerFactory;
     private final SeekerJpaRepository seekerJpaRepository;
     private final PhoneJpaRepository phoneJpaRepository;
 
@@ -49,6 +54,19 @@ public class PhoneDataAdapter implements PhonePort {
 
     @Override
     public void removePhone(RemoveSeekerPhone removeSeekerPhone) {
-        phoneJpaRepository.deleteById(removeSeekerPhone.getPhoneId());
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Query query = em.createQuery("delete from PhoneEntity pe where pe.id = :phoneId");
+            query.setParameter("phoneId", removeSeekerPhone.getPhoneId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
     }
 }
