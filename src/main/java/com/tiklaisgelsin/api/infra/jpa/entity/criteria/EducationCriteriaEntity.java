@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "education_criteria")
 public class EducationCriteriaEntity extends CriteriaEntity {
 
     private String study;

@@ -12,7 +12,6 @@ import java.util.Arrays;
 @Getter
 @Setter
 @Entity
-@Table(name = "experience_criteria")
 public class ExperienceCriteriaEntity extends CriteriaEntity {
 
     private String title;

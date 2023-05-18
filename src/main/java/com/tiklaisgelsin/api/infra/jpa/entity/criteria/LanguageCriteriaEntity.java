@@ -10,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "language_criteria")
 public class LanguageCriteriaEntity extends CriteriaEntity {
 
     private String language;
