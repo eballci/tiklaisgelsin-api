@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,6 +18,7 @@ public class SuggestionResponse implements Comparable<SuggestionResponse> {
     private Long positionId;
     private Long seekerId;
     private int matchRate;
+    private LocalDateTime createdAt;
 
     public static SuggestionResponse fromModel(SeekerSuggestion suggestion) {
         return SuggestionResponse.builder()
@@ -23,6 +26,7 @@ public class SuggestionResponse implements Comparable<SuggestionResponse> {
                 .positionId(suggestion.getPositionId())
                 .seekerId(suggestion.getSeekerId())
                 .matchRate(suggestion.getMatchRate())
+                .createdAt(suggestion.getCreatedAt())
                 .build();
     }
 
@@ -31,6 +35,7 @@ public class SuggestionResponse implements Comparable<SuggestionResponse> {
                 .id(suggestion.getId())
                 .positionId(suggestion.getPositionId())
                 .matchRate(suggestion.getMatchRate())
+                .createdAt(suggestion.getCreatedAt())
                 .build();
     }
 
