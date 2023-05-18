@@ -19,7 +19,7 @@ public class SubmissionController {
     private final VoidUseCaseHandler<RefuseSubmission> refuseSubmissionVoidUseCaseHandler;
     private final VoidUseCaseHandler<RemoveSubmission> removeSubmissionVoidUseCaseHandler;
 
-    @GetMapping("remove/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeSubmission(@PathVariable Long id) {
         removeSubmissionVoidUseCaseHandler.handle(RemoveSubmission.builder()

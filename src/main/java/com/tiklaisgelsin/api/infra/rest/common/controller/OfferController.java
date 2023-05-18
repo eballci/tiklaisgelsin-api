@@ -19,7 +19,7 @@ public class OfferController {
     private final VoidUseCaseHandler<ReadAllOffers> readAllOffersVoidUseCaseHandler;
     private final VoidUseCaseHandler<RefuseOffer> refuseOfferVoidUseCaseHandler;
 
-    @GetMapping("remove/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeOffer(@PathVariable Long id) {
         removeOfferVoidUseCaseHandler.handle(RemoveOffer.builder()
