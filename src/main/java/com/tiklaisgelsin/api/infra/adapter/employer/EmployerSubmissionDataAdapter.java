@@ -32,9 +32,11 @@ public class EmployerSubmissionDataAdapter implements EmployerSubmissionPort {
     @Override
     public void readAllSubmissions(ReadAllSubmissions readAllSubmissions) {
         List<SubmissionEntity> submissionEntities = repository.findAllByEmployerId(readAllSubmissions.getEmployerId());
-        submissionEntities.forEach(submissionEntity -> {
-            submissionEntity.setStatus(SubmissionStatus.IDLE.getLevel());
-        });
+        submissionEntities
+                .stream().filter(submissionEntity -> submissionEntity.getStatus() == 1)
+                .forEach(submissionEntity -> {
+                    submissionEntity.setStatus(SubmissionStatus.IDLE.getLevel());
+                });
         repository.saveAll(submissionEntities);
     }
 

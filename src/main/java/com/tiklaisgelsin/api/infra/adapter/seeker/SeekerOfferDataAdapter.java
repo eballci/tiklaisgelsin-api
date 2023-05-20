@@ -33,9 +33,11 @@ public class SeekerOfferDataAdapter implements SeekerOfferPort {
     public void readAllOffers(ReadAllOffers readAllOffers) {
         List<OfferEntity> offers = repository.findAllBySeekerId(readAllOffers.getSeekerId());
 
-        offers.forEach(offer -> {
-            offer.setStatus(OfferStatus.IDLE.getLevel());
-        });
+        offers.stream()
+                .filter(offer -> offer.getStatus() == 1)
+                .forEach(offer -> {
+                    offer.setStatus(OfferStatus.IDLE.getLevel());
+                });
 
         repository.saveAll(offers);
     }
