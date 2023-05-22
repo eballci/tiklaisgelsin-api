@@ -22,7 +22,7 @@ public class ExperienceEntity extends AbstractEntity {
     @Column(nullable = false)
     private String position;
 
-    @Column
+    @Column(columnDefinition = "text")
     private String description;
 
     @Column(nullable = false)

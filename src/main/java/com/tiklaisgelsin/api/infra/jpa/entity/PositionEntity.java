@@ -18,7 +18,7 @@ public class PositionEntity extends AbstractEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String description;
 
     @ManyToOne

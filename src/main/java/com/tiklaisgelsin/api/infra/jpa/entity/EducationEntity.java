@@ -24,7 +24,7 @@ public class EducationEntity extends AbstractEntity {
     @Column(nullable = false)
     private String institution;
 
-    @Column
+    @Column(columnDefinition = "text")
     private String description;
 
     @Column
