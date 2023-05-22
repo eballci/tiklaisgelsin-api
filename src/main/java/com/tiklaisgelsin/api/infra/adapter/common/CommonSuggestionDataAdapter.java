@@ -31,8 +31,13 @@ public class CommonSuggestionDataAdapter implements CommonSuggestionPort {
     public void createSuggestion(CreateSuggestion useCase) {
         Optional<SeekerEntity> seeker = seekerJpaRepository.findById(useCase.getSeekerId());
         Optional<PositionEntity> position = positionJpaRepository.findById(useCase.getPositionId());
+        Optional<SuggestionEntity> already = suggestionJpaRepository
+                .findBySeekerIdAndPositionId(
+                        useCase.getSeekerId(),
+                        useCase.getPositionId()
+                );
 
-        if (seeker.isEmpty() || position.isEmpty()) return;
+        if (seeker.isEmpty() || position.isEmpty() || already.isPresent()) return;
 
         SuggestionEntity suggestion = new SuggestionEntity();
         suggestion.setEmployer(position.get().getEmployer());
