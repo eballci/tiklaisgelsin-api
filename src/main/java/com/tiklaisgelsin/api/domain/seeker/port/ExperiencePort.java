@@ -11,4 +11,6 @@ public interface ExperiencePort {
     void updateExperience(UpdateSeekerExperience updateSeekerExperience);
 
     void removeExperience(RemoveSeekerExperience removeSeekerExperience);
+
+    Long getSeekerId(Long experienceId);
 }

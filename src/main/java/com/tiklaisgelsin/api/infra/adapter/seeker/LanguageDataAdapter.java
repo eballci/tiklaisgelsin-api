@@ -67,4 +67,12 @@ public class LanguageDataAdapter implements LanguagePort {
             }
         }
     }
+
+    @Override
+    public Long getSeekerId(Long languageId) {
+        Optional<LanguageEntity> language = languageJpaRepository.findById(languageId);
+
+        if (language.isEmpty()) throw new RuntimeException("The language doesn't exist");
+        return language.get().getSeeker().getId();
+    }
 }

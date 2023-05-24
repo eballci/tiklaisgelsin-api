@@ -11,4 +11,6 @@ public interface LanguagePort {
     void updateLanguage(UpdateSeekerLanguage updateSeekerLanguage);
 
     void removeLanguage(RemoveSeekerLanguage removeSeekerLanguage);
+
+    Long getSeekerId(Long languageId);
 }

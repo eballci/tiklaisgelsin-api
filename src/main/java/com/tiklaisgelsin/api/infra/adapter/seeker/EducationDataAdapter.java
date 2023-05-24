@@ -79,4 +79,13 @@ public class EducationDataAdapter implements EducationPort {
             }
         }
     }
+
+    @Override
+    public Long getSeekerId(Long educationId) {
+        Optional<EducationEntity> education = educationJpaRepository.findById(educationId);
+
+        if (education.isEmpty()) throw new RuntimeException("The education doesn't exist.");
+
+        return education.get().getSeeker().getId();
+    }
 }

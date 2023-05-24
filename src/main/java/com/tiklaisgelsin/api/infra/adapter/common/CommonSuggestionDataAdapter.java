@@ -1,6 +1,7 @@
 package com.tiklaisgelsin.api.infra.adapter.common;
 
 import com.tiklaisgelsin.api.domain.common.port.CommonSuggestionPort;
+import com.tiklaisgelsin.api.domain.common.usecase.ClearPositionSuggestionsForSeeker;
 import com.tiklaisgelsin.api.domain.common.usecase.ClearSeekerSuggestionsForPosition;
 import com.tiklaisgelsin.api.domain.common.usecase.CreateSuggestion;
 import com.tiklaisgelsin.api.infra.jpa.entity.PositionEntity;
@@ -56,6 +57,24 @@ public class CommonSuggestionDataAdapter implements CommonSuggestionPort {
             tx.begin();
             Query query = em.createQuery("delete from SuggestionEntity se where se.position.id = :positionId");
             query.setParameter("positionId", useCase.getPositionId());
+            query.executeUpdate();
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
+    }
+
+    @Override
+    public void clearAllPositionSuggestions(ClearPositionSuggestionsForSeeker useCase) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            Query query = em.createQuery("delete from SuggestionEntity se where se.seeker.id = :seekerId");
+            query.setParameter("seekerId", useCase.getSeekerId());
             query.executeUpdate();
             tx.commit();
         } catch (RuntimeException ex) {

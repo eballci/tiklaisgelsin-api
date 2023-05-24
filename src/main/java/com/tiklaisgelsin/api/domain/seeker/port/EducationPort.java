@@ -11,4 +11,6 @@ public interface EducationPort {
     void updateEducation(UpdateSeekerEducation useCase);
 
     void removeEducation(RemoveSeekerEducation useCase);
+
+    Long getSeekerId(Long educationId);
 }

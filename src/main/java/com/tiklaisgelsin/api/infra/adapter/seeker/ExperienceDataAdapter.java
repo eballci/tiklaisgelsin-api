@@ -77,4 +77,12 @@ public class ExperienceDataAdapter implements ExperiencePort {
             }
         }
     }
+
+    @Override
+    public Long getSeekerId(Long experienceId) {
+        Optional<ExperienceEntity> experience = experienceJpaRepository.findById(experienceId);
+
+        if (experience.isEmpty()) throw new RuntimeException("The experience doesn't exist");
+        return experience.get().getSeeker().getId();
+    }
 }
