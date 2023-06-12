@@ -27,6 +27,8 @@ public class SuggestPositionUseCaseHandler {
         Position position = positionPort.getPosition(useCase.getPositionId());
         List<Seeker> seekers = seekerPort.getAllSeekers();
 
+        if (position.getCriteriaList().size() == 0) return;
+
         for (Seeker seeker : seekers) {
             int sum = 0;
 

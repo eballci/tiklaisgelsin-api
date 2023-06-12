@@ -31,6 +31,8 @@ public class SuggestSeekerUseCaseHandler {
         for (Position position : positions) {
             int sum = 0;
 
+            if (position.getCriteriaList().size() == 0) continue;
+
             for (Criteria criteria : position.getCriteriaList()) {
                 sum += criteria.getPoint(seeker);
             }
